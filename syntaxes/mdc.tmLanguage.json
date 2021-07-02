@@ -137,10 +137,13 @@
       "patterns": [
         {
           "begin": "(^|\\G)(\\s*)(-{3})([\\w]*)$",
-          "end": "(^|\\G)(\\s*)(-{3})\\s*$",
+          "while": "(^|\\G)(?!\\s*([-]{3}|[:]{2,}))",
           "beginCaptures": {
             "3": {
               "name": "punctuation.definition.tag.start"
+            },
+            "4": {
+              "name": "entity.other.attribute-name.html"
             }
           },
           "patterns": [
