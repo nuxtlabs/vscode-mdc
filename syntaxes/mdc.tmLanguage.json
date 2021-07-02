@@ -5,13 +5,104 @@
   "scopeName": "text.markdown.docus",
   "patterns": [
     {
-      "include": "#component"
+      "include": "#component_block"
+    },
+    {
+      "include": "#markdown_attributes"
+    },
+    {
+      "include": "#span"
+    },
+    {
+      "include": "#component_inline"
     }
   ],
   "repository": {
-    "component": {
+    "markdown_attributes": {
+      "match": "([)])({)([^{]*)(})",
+      "name": "markup.component.attribute",
+      "captures": {
+        "3": {
+          "patterns": [
+            {
+              "include": "#attribute"
+            }
+          ]
+        }
+      }
+    },
+    "span": {
+      "match": "(\\[)([^]]*)(\\])(({)([^{]*)(}))?",
+      "name": "markup.component.span",
+      "captures": {
+        "2": {
+					"name": "string.other.link.description.title.markdown"
+        },
+        "4": {
+					"patterns": [
+            {
+              "include": "#attributes"
+            }
+          ]
+        }
+      }
+    },
+    "attributes": {
+      "match": "({)([^{]*)(})",
+      "name": "markup.attributes",
+      "captures": {
+        "2": {
+          "patterns": [
+            {
+              "include": "#attribute"
+            }
+          ]
+        }
+      }
+    },
+    "component_inline": {
+      "match": "(^|\\G|\\s+)(:)(?i:(\\w[\\w\\d-]*))(({[^}]*})(\\[[^\\]]*\\]?)|(\\[[^\\]]*\\])({[^}]*})?)?",
+      "name": "markup.component.inline",
+      "captures": {
+        "2": {
+          "name": "punctuation.definition.tag.start.component"
+        },
+        "3": {
+          "name": "entity.name.tag.component"
+        },
+        "5": {
+          "patterns": [
+            {
+              "include": "#attributes"
+            }
+          ]
+        },
+        "6": {
+          "patterns": [
+            {
+              "include": "#span"
+            }
+          ]
+        },
+        "7": {
+          "patterns": [
+            {
+              "include": "#span"
+            }
+          ]
+        },
+        "8": {
+          "patterns": [
+            {
+              "include": "#attributes"
+            }
+          ]
+        }
+      }
+    },
+    "component_block": {
       "begin": "(^|\\G)(\\s*)(:{2,})(?i:(\\w[\\w\\d-]*)(\\s+[^`]*|{([^{]*)})?$)",
-      "name": "markup.fenced_code.component.markdown",
+      "name": "markup.component.block",
       "end": "(^|\\G)(\\2|\\s{0,2})(\\3)\\s*$",
       "beginCaptures": {
         "3": {
@@ -45,7 +136,18 @@
       "contentName": "meta.embedded.block.component",
       "patterns": [
         {
-          "include": "text.html.markdown"
+          "begin": "(^|\\G)(\\s*)(-{3})([\\w]*)$",
+          "end": "(^|\\G)(\\s*)(-{3})\\s*$",
+          "beginCaptures": {
+            "3": {
+              "name": "punctuation.definition.tag.start"
+            }
+          },
+          "patterns": [
+            {
+              "include": "text.html.markdown"
+            }
+          ]
         }
       ]
     },
