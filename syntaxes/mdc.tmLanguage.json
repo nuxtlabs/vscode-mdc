@@ -8,21 +8,28 @@
       "include": "#component_block"
     },
     {
-      "include": "#markdown_attributes"
-    },
-    {
-      "include": "#span"
-    },
-    {
-      "include": "#component_inline"
+      "include": "#inline"
     }
   ],
   "repository": {
+    "inline": {
+      "patterns": [
+        {
+          "include": "#component_inline"
+        },
+        {
+          "include": "#span"
+        },
+        {
+          "include": "#markdown_attributes"
+        }
+      ]
+    }, 
     "markdown_attributes": {
-      "match": "([)])({)([^{]*)(})",
+      "match": "(?x)([^ ])(               # attributes\n    ({)\n      ([^{]*)\n    (})\n  )",
       "name": "markup.component.attribute",
       "captures": {
-        "3": {
+        "4": {
           "patterns": [
             {
               "include": "#attribute"
@@ -32,7 +39,7 @@
       }
     },
     "span": {
-      "match": "(\\[)([^]]*)(\\])(({)([^{]*)(}))?",
+      "match": "(?x)\n  (\\[)           # Open\n    ([^]]*)\n  (\\])\n  (               # attributes\n    ({)\n      ([^{]*)\n    (})\n  )?",
       "name": "markup.component.span",
       "captures": {
         "2": {
@@ -48,10 +55,10 @@
       }
     },
     "attributes": {
-      "match": "({)([^{]*)(})",
+      "match": "(?x)(               # attributes\n    ({)\n      ([^{]*)\n    (})\n  )",
       "name": "markup.attributes",
       "captures": {
-        "2": {
+        "3": {
           "patterns": [
             {
               "include": "#attribute"
@@ -61,7 +68,7 @@
       }
     },
     "component_inline": {
-      "match": "(^|\\G|\\s+)(:)(?i:(\\w[\\w\\d-]*))(({[^}]*})(\\[[^\\]]*\\]?)|(\\[[^\\]]*\\])({[^}]*})?)?",
+      "match": "(?x)\n  (^|\\G|\\s+)\n  (:)           # component colon\n  (?i:             # component name\n    (\\w[\\w\\d-]*)\n  )\n  (\n      ({[^}]*})        # attributes\n      (\\[[^\\]]*\\]?) # slot\n      # reverse order\n    | (\\[[^\\]]*\\])  # slot\n      ({[^}]*})?       # attributes\n  )?",
       "name": "markup.component.inline",
       "captures": {
         "2": {
@@ -101,7 +108,7 @@
       }
     },
     "component_block": {
-      "begin": "(^|\\G)(\\s*)(:{2,})(?i:(\\w[\\w\\d-]*)(\\s+[^`]*|{([^{]*)})?$)",
+      "begin": "(?x)\n  (^|\\G)(\\s*)\n  (:{2,})     # component colons\n  (?i:\n    (\\w[\\w\\d-]*)   # component name\n    (                 # folowing spaces or attributes\n        \\s*\n      | {([^{]*)}\n    )\n    $\n  )",
       "name": "markup.component.block",
       "end": "(^|\\G)(\\2|\\s{0,2})(\\3)\\s*$",
       "beginCaptures": {
@@ -157,7 +164,7 @@
     "attribute": {
       "patterns": [
         {
-          "match": "(([^=><\\s]*)(=[\"]([^\"]*)([\"])|[']([^']*)(['])|=[^\\s'\"]*)?\\s*)",
+          "match": "(?x)\n  (\n    ([^=><\\s]*)  # attribute name\n    (             # attribute value\n        =[\"]([^\"]*)([\"])|[']([^']*)(['])\n      | =[^\\s'\"]*\n    )?\n    \\s*\n  )",
           "captures": {
             "2": {
               "name": "entity.other.attribute-name.html"
