@@ -10,15 +10,15 @@
 		"Programming Languages"
 	],
 	"activationEvents": [
-        "onCommand:docus-syntax-highlight.helloWorld"
+		"onCommand:docus-syntax-highlight.helloWorld"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"languages": [{
-            "id": "markdown-docus",
-            "aliases": [],
-            "configuration": "./language-configuration.json"
-        }],
+			"id": "markdown-docus",
+			"aliases": [],
+			"configuration": "./language-configuration.json"
+		}],
 		"grammars": [
 			{
 			  "language": "markdown-docus",
