@@ -30,6 +30,12 @@
 			  ]
 			}
 		],
+    "snippets": [
+      {
+        "language": "markdown",
+        "path": "./snippets/markdown.code-snippets"
+      }
+    ],
 		"commands": [
 			{
 				"command": "docus-syntax-highlight.helloWorld",
