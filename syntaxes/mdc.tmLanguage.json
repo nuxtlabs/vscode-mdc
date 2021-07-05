@@ -143,21 +143,27 @@
       "contentName": "meta.embedded.block.component",
       "patterns": [
         {
-          "begin": "(^|\\G)(\\s*)(-{3})([\\w]*)$",
-          "while": "(^|\\G)(?!\\s*([-]{3}|[:]{2,}))",
-          "beginCaptures": {
-            "3": {
-              "name": "punctuation.definition.tag.start"
-            },
-            "4": {
-              "name": "entity.other.attribute-name.html"
-            }
-          },
+          "begin": "(^|\\G)(\\s*)(-{3})(\\s*)$",
+          "end": "(^|\\G)(\\s*(-{3})(\\s*)$)",
           "patterns": [
             {
-              "include": "text.html.markdown"
+              "include": "source.yaml"
             }
           ]
+        },
+        {
+          "match": "^(\\s*)(#[\\w\\_]*)\\s*(<!--(.*)-->)?$",
+          "captures": {
+            "2": {
+              "name": "punctuation.definition.tag.end.component"
+            },
+            "3": {
+              "name": "comment.block.html"
+            }
+          }
+        },
+        {
+          "include": "text.html.markdown"
         }
       ]
     },
