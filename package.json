@@ -1,13 +1,14 @@
 {
-  "name": "docus-syntax-highlight",
-	"displayName": "docus-syntax-highlight",
-	"description": "Syntaxy highlighter for Docus",
+  "name": "docus-markdown",
+	"displayName": "docus-markdown",
+	"description": "Docus Markdown",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.57.0"
 	},
 	"categories": [
-		"Programming Languages"
+		"Programming Languages",
+		"Snippets"
 	],
 	"activationEvents": [
 		"*"

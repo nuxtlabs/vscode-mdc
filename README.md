@@ -1,69 +1,59 @@
-# docus-syntax-highlight README
+# Docus Markdown
 
-This is the README for your extension "docus-syntax-highlight". After writing up a brief description, we recommend including the following sections.
+Docus writing experience is based on a specific syntax built upon Vue components.
+
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Block Components
 
-For example if there is an image subfolder under your extension project workspace:
+```md
+::card
+---
+icon: IconNuxt
+title: A complex card.
+---
 
-\!\[feature X\]\(images/feature-x.png\)
+Default slot
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+#description
+  ::alert
+    Description slot
+  ::
+::
+```
 
-## Requirements
+- Inline Components
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+```md
+:button-link[A button link]{.text-bold}
+<!-- or -->
+:button-link{.text-bold}[A button link]
+```
 
-## Extension Settings
+- Span Text
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+```md
+Hello [World]!
+```
 
-For example:
+- Attributes
 
-This extension contributes the following settings:
+```md
+Hello [World]{.text-primary-500}!
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+[Link](#link){.text-primary-500 ref="noopener"}!
 
-## Known Issues
+**Bold Text**{style="color: tomato"}
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+`Inline Code`{style="background: #333"}
 
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
+_Italic Text_{#italic_text}
+```
 
 ### For more information
 
+* [Docus Syntax Reference](https://docus.com/writing/syntax)
 * [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
