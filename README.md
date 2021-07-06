@@ -2,6 +2,9 @@
 
 Docus writing experience is based on a specific syntax built upon Vue components.
 
+## Editor Extensions
+
+[![Docus Extension for VS Code](https://img.shields.io/visual-studio-marketplace/v/NuxtLabs.docus?label=Visual%20Studio%20Code)](https://marketplace.visualstudio.com/items?itemName=NuxtLabs.docus)
 
 ## Features
 
