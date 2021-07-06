@@ -3,6 +3,14 @@
 	"displayName": "docus-markdown",
 	"description": "Docus Markdown",
 	"version": "0.0.1",
+	"publisher": "NuxtLabs",
+  "icon": "https://docus.com/icon.png",
+	"repository": {
+		"url": "https://github.com/docusgen/syntax-highlight.git",
+		"type": "git"
+	},
+	"homepage": "https://github.com/docusgen/syntax-highlight/blob/main/README.md",
+	"license": "SEE LICENSE IN LICENSE",
 	"engines": {
 		"vscode": "^1.57.0"
 	},
