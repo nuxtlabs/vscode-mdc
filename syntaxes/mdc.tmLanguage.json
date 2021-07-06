@@ -155,7 +155,7 @@
           "match": "^(\\s*)(#[\\w\\_]*)\\s*(<!--(.*)-->)?$",
           "captures": {
             "2": {
-              "name": "punctuation.definition.tag.end.component"
+              "name": "entity.other.attribute-name.html"
             },
             "3": {
               "name": "comment.block.html"
