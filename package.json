@@ -1,7 +1,7 @@
 {
-  "name": "docus-markdown",
-	"displayName": "docus-markdown",
-	"description": "Docus Markdown",
+  "name": "docus",
+	"displayName": "Docus",
+	"description": "Integrate Docus Markdown Syntax into VSCode",
 	"version": "0.0.1",
 	"publisher": "NuxtLabs",
   "icon": "images/icon.png",
@@ -24,13 +24,13 @@
 	"main": "./out/extension.js",
 	"contributes": {
 		"languages": [{
-			"id": "markdown-docus",
+			"id": "markdown",
 			"aliases": [],
 			"configuration": "./language-configuration.json"
 		}],
 		"grammars": [
 			{
-			  "language": "markdown-docus",
+			  "language": "markdown",
 			  "scopeName": "text.markdown.docus",
 			  "path": "./syntaxes/mdc.tmLanguage.json",
 			  "injectTo": [
