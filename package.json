@@ -4,7 +4,7 @@
 	"description": "Docus Markdown",
 	"version": "0.0.1",
 	"publisher": "NuxtLabs",
-  "icon": "https://docus.com/icon.png",
+  "icon": "images/icon.png",
 	"repository": {
 		"url": "https://github.com/docusgen/syntax-highlight.git",
 		"type": "git"
