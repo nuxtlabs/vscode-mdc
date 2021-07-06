@@ -25,14 +25,14 @@
 	"contributes": {
 		"languages": [
 			{
-				"id": "markdown",
+				"id": "docus-markdown",
 				"aliases": [],
 				"configuration": "./language-configuration.json"
 			}
 		],
 		"grammars": [
 			{
-				"language": "markdown",
+				"language": "docus-markdown",
 				"scopeName": "text.markdown.docus",
 				"path": "./syntaxes/mdc.tmLanguage.json",
 				"injectTo": [
@@ -43,7 +43,7 @@
 		],
 		"snippets": [
 			{
-				"language": "markdown",
+				"language": "docus-markdown",
 				"path": "./snippets/markdown.code-snippets"
 			}
 		]
