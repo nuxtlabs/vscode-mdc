@@ -2,9 +2,6 @@
 
 Docus writing experience is based on a specific syntax built upon Vue components.
 
-## Editor Extensions
-
-[![Docus Extension for VS Code](https://img.shields.io/visual-studio-marketplace/v/NuxtLabs.docus?label=Visual%20Studio%20Code)](https://marketplace.visualstudio.com/items?itemName=NuxtLabs.docus)
 
 ## Features
 
@@ -57,4 +54,7 @@ _Italic Text_{#italic_text}
 ### For more information
 
 * [Docus Syntax Reference](https://docus.com/writing/syntax)
+* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
+* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
+**Enjoy!**

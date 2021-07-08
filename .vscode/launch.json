@@ -6,14 +6,14 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "Run Extension",
+			"name": "Run VSCode Extension",
 			"type": "extensionHost",
 			"request": "launch",
 			"args": [
-				"--extensionDevelopmentPath=${workspaceFolder}"
+				"--extensionDevelopmentPath=${workspaceFolder}/packages/vscode"
 			],
 			"outFiles": [
-				"${workspaceFolder}/out/**/*.js"
+				"${workspaceFolder}/packages/vscode/out/**/*.js"
 			],
 			"preLaunchTask": "${defaultBuildTask}"
 		},
@@ -22,11 +22,11 @@
 			"type": "extensionHost",
 			"request": "launch",
 			"args": [
-				"--extensionDevelopmentPath=${workspaceFolder}",
-				"--extensionTestsPath=${workspaceFolder}/out/test/suite/index"
+				"--extensionDevelopmentPath=${workspaceFolder}/packages/vscode",
+				"--extensionTestsPath=${workspaceFolder}/packages/vscode/out/test/suite/index"
 			],
 			"outFiles": [
-				"${workspaceFolder}/out/test/**/*.js"
+				"${workspaceFolder}/packages/vscode/out/test/**/*.js"
 			],
 			"preLaunchTask": "${defaultBuildTask}"
 		}
