@@ -152,7 +152,7 @@
           ]
         },
         {
-          "match": "^(\\s*)(#[\\w\\_]*)\\s*(<!--(.*)-->)?$",
+          "match": "^(\\s*)(#[\\w\\-\\_]*)\\s*(<!--(.*)-->)?$",
           "captures": {
             "2": {
               "name": "entity.other.attribute-name.html"
