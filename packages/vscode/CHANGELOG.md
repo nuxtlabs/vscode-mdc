@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/docusgen/syntax-highlight/compare/v0.1.2...v0.1.3) (2021-08-19)
+
+
+### Features
+
+* init monarch grammar ([#3](https://github.com/docusgen/syntax-highlight/issues/3)) ([e3350e6](https://github.com/docusgen/syntax-highlight/commit/e3350e677c565daaa44aa8424dafca4d46f662ee))
+
+
+### Bug Fixes
+
+* support dash in slot name ([1c247d7](https://github.com/docusgen/syntax-highlight/commit/1c247d701fe7139df9aaf6d92934a57b9447faf1)), closes [#4](https://github.com/docusgen/syntax-highlight/issues/4)
+
 ### [0.1.2](https://github.com/docusgen/syntax-highlight/compare/v0.1.1...v0.1.2) (2021-07-06)
 
 ### 0.1.1 (2021-07-06)
