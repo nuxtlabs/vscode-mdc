@@ -110,7 +110,8 @@ export const language = <languages.IMonarchLanguage>{
 		],
 
 		component: [
-			[/^\s*#[\w_]*\s*$/, 'attribute.name.html'],
+			// #slots
+			[/^\s*#[\w_-]*\s*$/, 'attribute.name.html'],
 			{ include: '@markdown'}
 		],
 
