@@ -61,7 +61,7 @@
 		"pretest": "yarn run compile && yarn run lint",
 		"lint": "eslint src --ext ts",
 		"test": "node ./out/test/runTest.js",
-		"release": "standard-version && git push --follow-tags",
+		"release": "standard-version --releaseCommitMessageFormat 'chore(release): vscode extension {{currentTag}}' && git push --follow-tags",
 		"generate": "vsce package"
 	},
 	"devDependencies": {
