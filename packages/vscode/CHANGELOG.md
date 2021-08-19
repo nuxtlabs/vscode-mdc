@@ -20,13 +20,3 @@ All notable changes to this project will be documented in this file. See [standa
 * attributes regex ([17f01f0](https://github.com/docusgen/syntax-highlight/commit/17f01f0aea10c7b96a5d5114af4a31040b0f4678))
 * improve block slot support ([8a60614](https://github.com/docusgen/syntax-highlight/commit/8a60614600a9b0b05ca8f62693d48772eb7cedf8))
 * prevent name conflict ([edf2d67](https://github.com/docusgen/syntax-highlight/commit/edf2d67a25389184f0237eb9bdbadcf27ea3221b))
-
-# Change Log
-
-All notable changes to the "docus-syntax-highlight" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
