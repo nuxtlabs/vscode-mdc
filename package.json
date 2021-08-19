@@ -1,6 +1,7 @@
 {
   "name": "docus",
   "scripts": {
-    "dev:monarch": "cd packages/monarch; yarn dev"
+    "dev:monarch": "cd packages/monarch; yarn dev",
+    "generate:vscode": "cd packages/vscode; yarn generate"
   }
 }
