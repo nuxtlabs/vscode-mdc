@@ -13,7 +13,7 @@
 	"homepage": "https://github.com/docusgen/syntax-highlight/blob/main/packages/vscode/README.md",
 	"license": "SEE LICENSE IN LICENSE",
 	"engines": {
-		"vscode": "^1.999.0"
+		"vscode": "^1.0.0"
 	},
 	"categories": [
 		"Programming Languages",

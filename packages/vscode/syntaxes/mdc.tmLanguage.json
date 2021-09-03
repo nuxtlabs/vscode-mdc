@@ -12,6 +12,35 @@
     }
   ],
   "repository": {
+    "block": {
+      "comment": "Same as `text.html.markdown#block`, but without `raw_block`",
+			"patterns": [
+				{
+					"include": "text.html.markdown#separator"
+				},
+				{
+					"include": "#heading"
+				},
+				{
+					"include": "#blockquote"
+				},
+				{
+					"include": "#lists"
+				},
+				{
+					"include": "text.html.markdown#fenced_code_block"
+				},
+				{
+					"include": "text.html.markdown#link-def"
+				},
+				{
+					"include": "text.html.markdown#html"
+				},
+				{
+					"include": "#paragraph"
+				}
+			]
+		},
     "inline": {
       "patterns": [
         {
@@ -108,9 +137,9 @@
       }
     },
     "component_block": {
-      "begin": "(?x)\n  (^|\\G)(\\s*)\n  (:{2,})     # component colons\n  (?i:\n    (\\w[\\w\\d-]*)   # component name\n    (                 # folowing spaces or attributes\n        \\s*\n      | {([^{]*)}\n    )\n    $\n  )",
+      "begin": "(?x)\n  (^|\\G)(\\s*)\n  (:{2,})     # component colons\n  (?i:\n    (\\w[\\w\\d-]+)   # component name\n    (                 # folowing spaces or attributes\n        \\s*\n      | {([^{]*)}\n    )\n    $\n  )",
       "name": "markup.component.block",
-      "end": "(^|\\G)(\\2|\\s{0,2})(\\3)\\s*$",
+      "end": "(^|\\G)(\\2)(\\3)\\s*$",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.tag.start.component"
@@ -132,6 +161,15 @@
         }
       },
       "patterns": [
+        {
+          "comment": "Highlight ending tag of inner components",
+          "match": "(^|\\G)\\s*([:]{2,})$",
+          "captures": {
+            "2": {
+              "name": "punctuation.definition.tag.end.component"
+            }
+          }
+        },
         {
           "include": "#content"
         }
@@ -163,7 +201,8 @@
           }
         },
         {
-          "include": "text.html.markdown"
+          "comment": "Block Repository created to disable 4-space raw block inside components",
+          "include": "#block"
         }
       ]
     },
@@ -295,6 +334,243 @@
           "name": "invalid.illegal.ambiguous-ampersand.html"
         }
       ]
-    }
+    },
+    "heading": {
+			"match": "(?:^|\\G)[ ]*(#{1,6}\\s+(.*?)(\\s+#{1,6})?\\s*)$",
+			"captures": {
+				"1": {
+					"patterns": [
+						{
+							"match": "(#{6})\\s+(.*?)(?:\\s+(#+))?\\s*$",
+							"name": "heading.6.markdown",
+							"captures": {
+								"1": {
+									"name": "punctuation.definition.heading.markdown"
+								},
+								"2": {
+									"name": "entity.name.section.markdown",
+									"patterns": [
+										{
+											"include": "text.html.markdown#inline"
+										},
+										{
+											"include": "text.html.derivative"
+										}
+									]
+								},
+								"3": {
+									"name": "punctuation.definition.heading.markdown"
+								}
+							}
+						},
+						{
+							"match": "(#{5})\\s+(.*?)(?:\\s+(#+))?\\s*$",
+							"name": "heading.5.markdown",
+							"captures": {
+								"1": {
+									"name": "punctuation.definition.heading.markdown"
+								},
+								"2": {
+									"name": "entity.name.section.markdown",
+									"patterns": [
+										{
+											"include": "text.html.markdown#inline"
+										},
+										{
+											"include": "text.html.derivative"
+										}
+									]
+								},
+								"3": {
+									"name": "punctuation.definition.heading.markdown"
+								}
+							}
+						},
+						{
+							"match": "(#{4})\\s+(.*?)(?:\\s+(#+))?\\s*$",
+							"name": "heading.4.markdown",
+							"captures": {
+								"1": {
+									"name": "punctuation.definition.heading.markdown"
+								},
+								"2": {
+									"name": "entity.name.section.markdown",
+									"patterns": [
+										{
+											"include": "text.html.markdown#inline"
+										},
+										{
+											"include": "text.html.derivative"
+										}
+									]
+								},
+								"3": {
+									"name": "punctuation.definition.heading.markdown"
+								}
+							}
+						},
+						{
+							"match": "(#{3})\\s+(.*?)(?:\\s+(#+))?\\s*$",
+							"name": "heading.3.markdown",
+							"captures": {
+								"1": {
+									"name": "punctuation.definition.heading.markdown"
+								},
+								"2": {
+									"name": "entity.name.section.markdown",
+									"patterns": [
+										{
+											"include": "text.html.markdown#inline"
+										},
+										{
+											"include": "text.html.derivative"
+										}
+									]
+								},
+								"3": {
+									"name": "punctuation.definition.heading.markdown"
+								}
+							}
+						},
+						{
+							"match": "(#{2})\\s+(.*?)(?:\\s+(#+))?\\s*$",
+							"name": "heading.2.markdown",
+							"captures": {
+								"1": {
+									"name": "punctuation.definition.heading.markdown"
+								},
+								"2": {
+									"name": "entity.name.section.markdown",
+									"patterns": [
+										{
+											"include": "text.html.markdown#inline"
+										},
+										{
+											"include": "text.html.derivative"
+										}
+									]
+								},
+								"3": {
+									"name": "punctuation.definition.heading.markdown"
+								}
+							}
+						},
+						{
+							"match": "(#{1})\\s+(.*?)(?:\\s+(#+))?\\s*$",
+							"name": "heading.1.markdown",
+							"captures": {
+								"1": {
+									"name": "punctuation.definition.heading.markdown"
+								},
+								"2": {
+									"name": "entity.name.section.markdown",
+									"patterns": [
+										{
+											"include": "text.html.markdown#inline"
+										},
+										{
+											"include": "text.html.derivative"
+										}
+									]
+								},
+								"3": {
+									"name": "punctuation.definition.heading.markdown"
+								}
+							}
+						}
+					]
+				}
+			},
+			"name": "markup.heading.markdown",
+			"patterns": [
+				{
+					"include": "text.html.markdown#inline"
+				}
+			]
+		},
+		"heading-setext": {
+			"patterns": [
+				{
+					"match": "^(={3,})(?=[ \\t]*$\\n?)",
+					"name": "markup.heading.setext.1.markdown"
+				},
+				{
+					"match": "^(-{3,})(?=[ \\t]*$\\n?)",
+					"name": "markup.heading.setext.2.markdown"
+				}
+			]
+		},
+    "lists": {
+			"patterns": [
+				{
+					"begin": "(^|\\G)([ ]*)([*+-])([ \\t])",
+					"beginCaptures": {
+						"3": {
+							"name": "punctuation.definition.list.begin.markdown"
+						}
+					},
+					"comment": "Currently does not support un-indented second lines.",
+					"name": "markup.list.unnumbered.markdown",
+					"patterns": [
+						{
+							"include": "#block"
+						},
+						{
+							"include": "text.html.markdown#list_paragraph"
+						}
+					],
+					"while": "((^|\\G)([ ]*|\\t))|(^[ \\t]*$)"
+				},
+				{
+					"begin": "(^|\\G)([ ]*)([0-9]+\\.)([ \\t])",
+					"beginCaptures": {
+						"3": {
+							"name": "punctuation.definition.list.begin.markdown"
+						}
+					},
+					"name": "markup.list.numbered.markdown",
+					"patterns": [
+						{
+							"include": "#block"
+						},
+						{
+							"include": "text.html.markdown#list_paragraph"
+						}
+					],
+					"while": "((^|\\G)([ ]*|\\t))|(^[ \\t]*$)"
+				}
+			]
+		},
+		"paragraph": {
+			"begin": "(^|\\G)[ ]*(?=\\S)",
+			"name": "meta.paragraph.markdown",
+			"patterns": [
+				{
+					"include": "text.html.markdown#inline"
+				},
+				{
+					"include": "text.html.derivative"
+				},
+				{
+					"include": "#heading-setext"
+				}
+			],
+			"while": "(^|\\G)((?=\\s*[-=]{3,}\\s*$)|[ ]{4,}(?=\\S))"
+		},
+    "blockquote": {
+			"begin": "(^|\\G)[ ]*(>) ?",
+			"captures": {
+				"2": {
+					"name": "punctuation.definition.quote.begin.markdown"
+				}
+			},
+			"name": "markup.quote.markdown",
+			"patterns": [
+				{
+					"include": "#block"
+				}
+			],
+			"while": "(^|\\G)\\s*(>) ?"
+		}
   }
 }
