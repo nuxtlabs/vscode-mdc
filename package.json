@@ -1,7 +1,81 @@
 {
-  "name": "docus",
-  "scripts": {
-    "dev:monarch": "cd packages/monarch; yarn dev",
-    "generate:vscode": "cd packages/vscode; yarn generate"
-  }
+	"name": "docus",
+	"displayName": "Docus",
+	"description": "Integrate Docus Markdown Syntax into VSCode",
+	"version": "0.1.3",
+	"publisher": "NuxtLabs",
+	"icon": "images/icon.png",
+	"repository": {
+		"url": "https://github.com/docusgen/vscode-extension",
+		"type": "git"
+	},
+	"homepage": "https://github.com/docusgen/vscode-extension/blob/main/README.md",
+	"license": "SEE LICENSE IN LICENSE",
+	"engines": {
+		"vscode": "^1.42.0"
+	},
+	"categories": [
+		"Programming Languages",
+		"Snippets"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"languages": [
+			{
+				"id": "docus-markdown",
+				"aliases": [],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "docus-markdown",
+				"scopeName": "text.markdown.docus",
+				"path": "./syntaxes/mdc.tmLanguage.json",
+				"injectTo": [
+					"text.html.markdown",
+					"text.html.markdown.jsx"
+				]
+			}
+		],
+		"snippets": [
+			{
+				"language": "docus-markdown",
+				"path": "./snippets/markdown.code-snippets"
+			}
+		]
+	},
+	"standard-version": {
+		"skip": {
+			"tag": true
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "yarn run compile && yarn run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js",
+		"release": "standard-version && git push --follow-tags",
+		"generate": "vsce package --yarn"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.4",
+		"@types/mocha": "^8.2.3",
+		"@types/node": "14.x",
+		"@types/vscode": "1.42.0",
+		"@typescript-eslint/eslint-plugin": "^4.29.2",
+		"@typescript-eslint/parser": "^4.29.2",
+		"eslint": "^7.32.0",
+		"glob": "^7.1.7",
+		"mocha": "^8.4.0",
+		"standard-version": "^9.3.1",
+		"typescript": "^4.3.5",
+		"vsce": "^1.96.1",
+		"vscode-test": "^1.6.1"
+	}
 }
