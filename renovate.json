@@ -1,5 +1,11 @@
 {
   "extends": [
     "@nuxtjs"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["vscode", "@types/vscode"],
+      "enabled": false
+    }
   ]
 }
