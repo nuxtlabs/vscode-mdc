@@ -15,6 +15,9 @@
     "block": {
       "comment": "Same as `text.html.markdown#block`, but without `raw_block`",
 			"patterns": [
+        {
+          "include": "#component_block"
+        },
 				{
 					"include": "text.html.markdown#separator"
 				},
