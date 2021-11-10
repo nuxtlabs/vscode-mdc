@@ -212,7 +212,7 @@
     "attribute": {
       "patterns": [
         {
-          "match": "(?x)\n  (\n    ([^=><\\s]*)  # attribute name\n    (             # attribute value\n        =[\"]([^\"]*)([\"])|[']([^']*)(['])\n      | =[^\\s'\"]*\n    )?\n    \\s*\n  )",
+          "match": "(?x)\n  (\n    ([^=><\\s]*)  # attribute name\n    (             # attribute value\n        =[\"]([^\"]*)([\"])|[']([^']*)(['])\n      | =[^\\s'\"}]*\n    )?\n    \\s*\n  )",
           "captures": {
             "2": {
               "name": "entity.other.attribute-name.html"
