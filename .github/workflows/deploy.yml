@@ -1,8 +1,11 @@
 name: deploy
 on:
   push:
-    tags:        
-      - v*
+    branches:
+      - main
+    pull_request:
+      branches:
+        - main
 
 jobs:
   ci:
@@ -37,8 +40,8 @@ jobs:
       - name: Lint
         run: yarn lint
 
-      - name: Test
-        run: yarn test
+      # - name: Test
+      #   run: yarn test
 
       - name: Generate extension
         run: yarn generate
