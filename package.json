@@ -2,7 +2,7 @@
 	"name": "docus",
 	"displayName": "Docus",
 	"description": "Integrate Docus Markdown Syntax into VSCode",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"publisher": "NuxtLabs",
 	"icon": "images/icon.png",
 	"repository": {
