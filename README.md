@@ -1,3 +1,5 @@
+<img src="./images/icon.png" alt="MDC - Markdown Components by NuxtLabs" width="150" />
+
 # MDC for Visual Studio Code
 
 [![MDC Extension for VS Code][extension-version-src]][extension-href]
