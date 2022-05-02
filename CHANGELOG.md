@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/nuxtlabs/vscode-mdc/compare/v0.1.4...v0.1.5) (2022-05-02)
+
+
+### Features
+
+* move to Nuxt and rename to MDC ([8e1b3d0](https://github.com/nuxtlabs/vscode-mdc/commit/8e1b3d04fae2883987c98c040ee5e98edfd7497f))
+
 ### [0.1.4](https://github.com/docusgen/vscode-extension/compare/v0.1.2...v0.1.4) (2021-11-11)
 
 

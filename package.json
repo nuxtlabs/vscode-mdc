@@ -2,7 +2,7 @@
 	"name": "mdc",
 	"displayName": "MDC",
 	"description": "Provides syntax highlighting and colon matching for MDC (Markdown Components) files for Nuxt Content.",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"publisher": "Nuxt",
 	"icon": "images/icon.png",
 	"repository": {
