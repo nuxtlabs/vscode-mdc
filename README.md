@@ -1,13 +1,14 @@
-# Docus Markdown
+# MDC for Visual Studio Code
+
 [![Docus Extension for VS Code][extension-version-src]][extension-href]
 [![Docus Extension for VS Code][extension-downloads-src]][extension-href]
 [![Docus Extension for VS Code][extension-installs-src]][extension-href]
 
-Docus writing experience is based on a specific syntax built upon Vue components.
+Provides syntax highlighting and colon matching for MDC (Markdown Components) files for [Nuxt Content](https://content.nuxtjs.org).
 
 ## Features
 
-- Block Components
+### Block Components
 
 ```md
 ::card
@@ -25,7 +26,7 @@ Default slot
 ::
 ```
 
-- Inline Components
+### Inline Components
 
 ```md
 :button-link[A button link]{.text-bold}
@@ -33,13 +34,13 @@ Default slot
 :button-link{.text-bold}[A button link]
 ```
 
-- Span Text
+### Span Text
 
 ```md
 Hello [World]!
 ```
 
-- Attributes
+### Attributes
 
 ```md
 Hello [World]{.text-primary-500}!
@@ -55,7 +56,7 @@ _Italic Text_{#italic_text}
 
 ### For more information
 
-* [Docus Syntax Reference](https://docus.com/writing/syntax)
+* [Docus Syntax Reference](https://docus.dev/writing/syntax)
 
 
 <!-- Badges -->
