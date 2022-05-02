@@ -68,14 +68,14 @@
 		"@types/mocha": "^8.2.3",
 		"@types/node": "16.x",
 		"@types/vscode": "1.42.0",
-		"@typescript-eslint/eslint-plugin": "^5.3.1",
-		"@typescript-eslint/parser": "^5.3.1",
+		"@typescript-eslint/eslint-plugin": "^5.13.0",
+		"@typescript-eslint/parser": "^5.13.0",
 		"eslint": "^7.32.0",
 		"glob": "^7.2.0",
 		"mocha": "^8.4.0",
 		"standard-version": "^9.3.2",
-		"typescript": "^4.4.4",
-		"vsce": "^2.2.0",
+		"typescript": "^4.6.2",
+		"vsce": "^2.6.7",
 		"vscode-test": "^1.6.1"
 	}
 }
