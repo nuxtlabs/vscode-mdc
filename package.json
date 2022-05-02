@@ -53,11 +53,6 @@
       }
     ]
   },
-  "standard-version": {
-    "skip": {
-      "tag": true
-    }
-  },
   "scripts": {
     "vscode:prepublish": "yarn run compile",
     "compile": "tsc -p ./",
