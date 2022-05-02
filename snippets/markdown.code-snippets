@@ -1,17 +1,17 @@
 {
-	"Insert span text": {
-		"prefix": "span",
-		"body": "[${1:${TM_SELECTED_TEXT}}]$0",
-		"description": "Insert span text"
-	},
-	"Insert Simple Block": {
-		"prefix": ["block", "::"],
-		"body": ["::$1", "${0:${TM_SELECTED_TEXT}}", "::"],
-		"description": "Insert Simple Block"
-	},
-	"Insert Data Block": {
-		"prefix": ["block", "::-"],
-		"body": ["::$1", "---", "$2","---","${0:${TM_SELECTED_TEXT}}","::"],
-		"description": "Insert Data Block"
-	}
+  "Insert span text": {
+    "prefix": "span",
+    "body": "[${1:${TM_SELECTED_TEXT}}]$0",
+    "description": "Insert span text"
+  },
+  "Insert Simple Block": {
+    "prefix": ["block", "::"],
+    "body": ["::$1", "${0:${TM_SELECTED_TEXT}}", "::"],
+    "description": "Insert Simple Block"
+  },
+  "Insert Data Block": {
+    "prefix": ["block", "::-"],
+    "body": ["::$1", "---", "$2","---","${0:${TM_SELECTED_TEXT}}","::"],
+    "description": "Insert Data Block"
+  }
 }

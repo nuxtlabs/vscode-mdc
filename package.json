@@ -1,86 +1,86 @@
 {
-	"name": "mdc",
-	"displayName": "MDC",
-	"description": "Provides syntax highlighting and colon matching for MDC (Markdown Components) files for Nuxt Content.",
-	"version": "0.1.5",
-	"publisher": "Nuxt",
-	"icon": "images/icon.png",
-	"repository": {
-		"url": "https://github.com/nuxtlabs/vscode-mdc",
-		"type": "git"
-	},
-	"homepage": "https://github.com/nuxtlabs/vscode-mdc/blob/main/README.md",
-	"license": "SEE LICENSE IN LICENSE",
-	"engines": {
-		"vscode": "^1.42.0"
-	},
-	"categories": [
-		"Programming Languages",
-		"Snippets"
-	],
-	"activationEvents": [
-		"onStartupFinished"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"languages": [
-			{
-				"id": "mdc",
-				"aliases": [
-					"MDC",
-					"mdc",
-					"Markdown Components",
-					"Nuxt Content"
-				],
-				"configuration": "./language-configuration.json"
-			}
-		],
-		"grammars": [
-			{
-				"language": "mdc",
-				"scopeName": "text.markdown.mdc",
-				"path": "./syntaxes/mdc.tmLanguage.json",
-				"injectTo": [
-					"text.html.markdown",
-					"text.html.markdown.jsx"
-				]
-			}
-		],
-		"snippets": [
-			{
-				"language": "mdc",
-				"path": "./snippets/markdown.code-snippets"
-			}
-		]
-	},
-	"standard-version": {
-		"skip": {
-			"tag": true
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "yarn run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "yarn run compile && yarn run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js",
-		"release": "standard-version && git push --follow-tags",
-		"generate": "vsce package --yarn"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.2.0",
-		"@types/mocha": "^8.2.3",
-		"@types/node": "16.x",
-		"@types/vscode": "1.42.0",
-		"@typescript-eslint/eslint-plugin": "^5.13.0",
-		"@typescript-eslint/parser": "^5.13.0",
-		"eslint": "^7.32.0",
-		"glob": "^7.2.0",
-		"mocha": "^8.4.0",
-		"standard-version": "^9.3.2",
-		"typescript": "^4.6.2",
-		"vsce": "^2.6.7",
-		"vscode-test": "^1.6.1"
-	}
+  "name": "mdc",
+  "displayName": "MDC",
+  "description": "Provides syntax highlighting and colon matching for MDC (Markdown Components) files for Nuxt Content.",
+  "version": "0.1.5",
+  "publisher": "Nuxt",
+  "icon": "images/icon.png",
+  "repository": {
+    "url": "https://github.com/nuxtlabs/vscode-mdc",
+    "type": "git"
+  },
+  "homepage": "https://github.com/nuxtlabs/vscode-mdc/blob/main/README.md",
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": {
+    "vscode": "^1.42.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "mdc",
+        "aliases": [
+          "MDC",
+          "mdc",
+          "Markdown Components",
+          "Nuxt Content"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "mdc",
+        "scopeName": "text.markdown.mdc",
+        "path": "./syntaxes/mdc.tmLanguage.json",
+        "injectTo": [
+          "text.html.markdown",
+          "text.html.markdown.jsx"
+        ]
+      }
+    ],
+    "snippets": [
+      {
+        "language": "mdc",
+        "path": "./snippets/markdown.code-snippets"
+      }
+    ]
+  },
+  "standard-version": {
+    "skip": {
+      "tag": true
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "release": "standard-version && git push --follow-tags",
+    "generate": "vsce package --yarn"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^8.2.3",
+    "@types/node": "16.x",
+    "@types/vscode": "1.42.0",
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
+    "@typescript-eslint/parser": "^5.13.0",
+    "eslint": "^7.32.0",
+    "glob": "^7.2.0",
+    "mocha": "^8.4.0",
+    "standard-version": "^9.3.2",
+    "typescript": "^4.6.2",
+    "vsce": "^2.6.7",
+    "vscode-test": "^1.6.1"
+  }
 }
