@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/nuxtlabs/vscode-mdc/compare/v0.1.4...v0.1.7) (2022-05-02)
+
+
+### Features
+
+* move to Nuxt and rename to MDC ([8e1b3d0](https://github.com/nuxtlabs/vscode-mdc/commit/8e1b3d04fae2883987c98c040ee5e98edfd7497f))
+
+
+### Bug Fixes
+
+* convert indendation to spaces ([e9f6fff](https://github.com/nuxtlabs/vscode-mdc/commit/e9f6fff0a2ffde4aee48850dbe1c8fb253fe9152))
+* remove skipping tag ([0d0a2d2](https://github.com/nuxtlabs/vscode-mdc/commit/0d0a2d20a3d201c729a4f3f702a029809dceddd6))
+
 ### [0.1.6](https://github.com/nuxtlabs/vscode-mdc/compare/v0.1.4...v0.1.6) (2022-05-02)
 
 
