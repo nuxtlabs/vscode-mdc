@@ -1,8 +1,8 @@
 # MDC for Visual Studio Code
 
-[![Docus Extension for VS Code][extension-version-src]][extension-href]
-[![Docus Extension for VS Code][extension-downloads-src]][extension-href]
-[![Docus Extension for VS Code][extension-installs-src]][extension-href]
+[![MDC Extension for VS Code][extension-version-src]][extension-href]
+[![MDC Extension for VS Code][extension-downloads-src]][extension-href]
+[![MDC Extension for VS Code][extension-installs-src]][extension-href]
 
 Provides syntax highlighting and colon matching for MDC (Markdown Components) files for [Nuxt Content](https://content.nuxtjs.org).
 

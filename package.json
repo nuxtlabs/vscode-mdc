@@ -1,15 +1,15 @@
 {
-	"name": "docus",
-	"displayName": "Docus",
-	"description": "Integrate Docus Markdown Syntax into VSCode",
+	"name": "mdc",
+	"displayName": "MDC",
+	"description": "Provides syntax highlighting and colon matching for MDC (Markdown Components) files for Nuxt Content.",
 	"version": "0.1.4",
-	"publisher": "NuxtLabs",
+	"publisher": "Nuxt",
 	"icon": "images/icon.png",
 	"repository": {
-		"url": "https://github.com/docusgen/vscode-extension",
+		"url": "https://github.com/nuxtlabs/vscode-mdc",
 		"type": "git"
 	},
-	"homepage": "https://github.com/docusgen/vscode-extension/blob/main/README.md",
+	"homepage": "https://github.com/nuxtlabs/vscode-mdc/blob/main/README.md",
 	"license": "SEE LICENSE IN LICENSE",
 	"engines": {
 		"vscode": "^1.42.0"
@@ -25,15 +25,20 @@
 	"contributes": {
 		"languages": [
 			{
-				"id": "docus-markdown",
-				"aliases": [],
+				"id": "mdc",
+				"aliases": [
+					"MDC",
+					"mdc",
+					"Markdown Components",
+					"Nuxt Content"
+				],
 				"configuration": "./language-configuration.json"
 			}
 		],
 		"grammars": [
 			{
-				"language": "docus-markdown",
-				"scopeName": "text.markdown.docus",
+				"language": "mdc",
+				"scopeName": "text.markdown.mdc",
 				"path": "./syntaxes/mdc.tmLanguage.json",
 				"injectTo": [
 					"text.html.markdown",
@@ -43,7 +48,7 @@
 		],
 		"snippets": [
 			{
-				"language": "docus-markdown",
+				"language": "mdc",
 				"path": "./snippets/markdown.code-snippets"
 			}
 		]
