@@ -60,7 +60,7 @@ _Italic Text_{#italic_text}
 
 
 <!-- Badges -->
-[extension-href]: https://marketplace.visualstudio.com/items?itemName=NuxtLabs.docus
-[extension-version-src]: https://img.shields.io/visual-studio-marketplace/v/NuxtLabs.docus?label=Visual%20Studio%20Code
-[extension-downloads-src]: https://img.shields.io/visual-studio-marketplace/d/NuxtLabs.docus
-[extension-installs-src]: https://img.shields.io/visual-studio-marketplace/i/NuxtLabs.docus
+[extension-href]: https://marketplace.visualstudio.com/items?itemName=Nuxt.mdc
+[extension-version-src]: https://img.shields.io/visual-studio-marketplace/v/Nuxt.mdc?label=Visual%20Studio%20Code
+[extension-downloads-src]: https://img.shields.io/visual-studio-marketplace/d/Nuxt.mdc
+[extension-installs-src]: https://img.shields.io/visual-studio-marketplace/i/Nuxt.mdc
