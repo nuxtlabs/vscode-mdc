@@ -64,18 +64,18 @@
     "generate": "vsce package --yarn"
   },
   "devDependencies": {
-    "@types/glob": "^7.2.0",
-    "@types/mocha": "^8.2.3",
-    "@types/node": "16.x",
-    "@types/vscode": "1.42.0",
-    "@typescript-eslint/eslint-plugin": "^5.13.0",
-    "@typescript-eslint/parser": "^5.13.0",
-    "eslint": "^7.32.0",
-    "glob": "^7.2.0",
-    "mocha": "^8.4.0",
-    "standard-version": "^9.3.2",
-    "typescript": "^4.6.2",
-    "vsce": "^2.6.7",
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "18.x",
+    "@types/vscode": "1.71.0",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/parser": "^5.37.0",
+    "eslint": "^8.23.1",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "standard-version": "^9.5.0",
+    "typescript": "4.6.2",
+    "vsce": "^2.11.0",
     "vscode-test": "^1.6.1"
   }
 }
