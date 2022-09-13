@@ -58,7 +58,7 @@
       ]
     }, 
     "markdown_attributes": {
-      "match": "(?x)([^ ])(               # attributes\n    ({)\n      ([^{]*)\n    (})\n  )",
+      "match": "(?x)([^{ ])(               # attributes\n    ({)\n      ([^{]*)\n    (})\n  )",
       "name": "markup.component.attribute",
       "captures": {
         "4": {
