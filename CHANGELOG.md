@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/nuxtlabs/vscode-mdc/compare/v0.1.7...v0.1.8) (2022-09-14)
+
+
+### Features
+
+* enable web extension ([2766128](https://github.com/nuxtlabs/vscode-mdc/commit/276612883090183f73598074e29930bc2dc8da0d))
+
+
+### Bug Fixes
+
+* **highlight:** broken highlighting of mustache syntax ([#27](https://github.com/nuxtlabs/vscode-mdc/issues/27)) ([7bf8ce3](https://github.com/nuxtlabs/vscode-mdc/commit/7bf8ce3dbda8f2d79431d80dc59c4e28b4fc745c))
+
 ### [0.1.7](https://github.com/nuxtlabs/vscode-mdc/compare/v0.1.4...v0.1.7) (2022-05-02)
 
 
