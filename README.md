@@ -58,7 +58,7 @@ _Italic Text_{#italic_text}
 
 ### For more information
 
-* [Docus Syntax Reference](https://docus.dev/writing/syntax)
+* [MDC Syntax Reference](https://content.nuxtjs.org/guide/writing/mdc/)
 
 
 <!-- Badges -->
