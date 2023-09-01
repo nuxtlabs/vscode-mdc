@@ -17,6 +17,8 @@ jobs:
       - name: pnpm setup
         uses: pnpm/action-setup@v2
 
+      - run: pnpm install
+
       - name: Generate extension
         run: yarn generate
 
