@@ -1,6 +1,7 @@
 {
   "name": "mdc",
-  "displayName": "MDC",
+  "packageManager": "pnpm@8.7.1",
+  "displayName": "MDC - Markdown Components",
   "description": "Provides syntax highlighting and colon matching for MDC (Markdown Components) files for Nuxt Content.",
   "version": "0.1.8",
   "publisher": "Nuxt",
@@ -10,7 +11,7 @@
     "type": "git"
   },
   "homepage": "https://github.com/nuxtlabs/vscode-mdc/blob/main/README.md",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "engines": {
     "vscode": "^1.42.0"
   },
@@ -18,11 +19,6 @@
     "Programming Languages",
     "Snippets"
   ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
-  "main": "./out/extension.js",
-  "browser": "./dist/web/extension.js",
   "contributes": {
     "languages": [
       {
@@ -55,37 +51,24 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "yarn run compile && npm run package-web",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "yarn run compile && yarn run lint",
+    "vscode:prepublish": "npm run build",
+    "build": "esno scripts/build.ts",
+    "dev": "esno watch scripts/build.ts",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js",
+    "test": "vitest",
     "release": "standard-version && git push --follow-tags",
-    "generate": "vsce package --yarn",
-    "compile-web": "webpack",
-    "watch-web": "webpack --watch",
-    "package-web": "webpack --mode production --devtool hidden-source-map"
+    "generate": "vsce package --no-dependencies",
+    "publish": "vsce publish --no-dependencies"
   },
   "devDependencies": {
-    "@types/glob": "^8.0.0",
-    "@types/mocha": "^9.1.1",
-    "@types/node": "18.x",
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@types/node": "^18.17.12",
     "@types/vscode": "1.42.0",
-    "@types/webpack-env": "^1.18.0",
-    "@vscode/test-web": "^0.0.30",
-    "@typescript-eslint/eslint-plugin": "^5.37.0",
-    "@typescript-eslint/parser": "^5.37.0",
-    "eslint": "^8.23.1",
-    "glob": "^8.0.3",
-    "mocha": "^10.0.0",
-    "process": "^0.11.10",
+    "@vscode/vsce": "^2.21.0",
+    "eslint": "^8.48.0",
+    "esno": "^0.17.0",
     "standard-version": "^9.5.0",
-    "ts-loader": "^9.3.1",
-    "typescript": "4.8.3",
-    "vsce": "^2.11.0",
-    "vscode-test": "^1.6.1",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
+    "typescript": "5.2.2",
+    "vscode-textmate": "^9.0.0"
   }
 }
