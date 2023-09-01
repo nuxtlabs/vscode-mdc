@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/nuxtlabs/vscode-mdc/compare/v0.1.8...v0.2.0) (2023-09-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* project overhaul (#33)
+
+### Features
+
+* project overhaul ([#33](https://github.com/nuxtlabs/vscode-mdc/issues/33)) ([6294dbc](https://github.com/nuxtlabs/vscode-mdc/commit/6294dbce9706f538a521e7dccce9609e928dc3be))
+
+
+### Bug Fixes
+
+* **README.md:** MDC Syntax Reference link ([#31](https://github.com/nuxtlabs/vscode-mdc/issues/31)) ([5ff7fd7](https://github.com/nuxtlabs/vscode-mdc/commit/5ff7fd71a4e5c59b50962a1bd0ba0e50f66446d4))
+* update icon ([#34](https://github.com/nuxtlabs/vscode-mdc/issues/34)) ([a18dea2](https://github.com/nuxtlabs/vscode-mdc/commit/a18dea2fb4263dff2d83866d596a7fe3573fca85))
+
 ### [0.1.8](https://github.com/nuxtlabs/vscode-mdc/compare/v0.1.7...v0.1.8) (2022-09-14)
 
 
