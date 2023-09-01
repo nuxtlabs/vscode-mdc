@@ -6,39 +6,16 @@ on:
 
 jobs:
   ci:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [16]
+    runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: lts/*
 
-      - name: Checkout
-        uses: actions/checkout@master
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-
-      - name: Cache
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
-
-      - name: Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn
-
-      - name: Lint
-        run: yarn lint
-
-      # - name: Test
-      #   run: yarn test
+      - name: pnpm setup
+        uses: pnpm/action-setup@v2
 
       - name: Generate extension
         run: yarn generate
@@ -48,3 +25,4 @@ jobs:
         with:
           pat: ${{ secrets.VS_MARKETPLACE_TOKEN }}
           registryUrl: https://marketplace.visualstudio.com
+          dependencies: false
