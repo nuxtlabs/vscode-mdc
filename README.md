@@ -58,7 +58,7 @@ _Italic Text_{#italic_text}
 
 ### For more information
 
-* [MDC Syntax Reference](https://content.nuxtjs.org/guide/writing/mdc/)
+* [MDC Syntax Reference](https://content.nuxt.com/usage/markdown#introduction)
 
 
 <!-- Badges -->
