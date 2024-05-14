@@ -1,6 +1,6 @@
 <img src="./images/icon.png" alt="MDC - Markdown Components by NuxtLabs" width="150" />
 
-# MDC for Visual Studio Code
+# MDC syntax highlight for Visual Studio Code
 
 [![MDC Extension for VS Code][extension-version-src]][extension-href]
 [![MDC Extension for VS Code][extension-downloads-src]][extension-href]
@@ -8,8 +8,13 @@
 
 Provides syntax highlighting and colon (`:`) matching for MDC (Markdown Components) files.
 
-Tools:
+- [Download VS Code extension](https://marketplace.visualstudio.com/items?itemName=Nuxt.mdc)
+
+Best used with:
 - [Remark MDC](https://github.com/nuxtlabs/remark-mdc)
+- [Markdown It MDC](https://github.com/antfu/markdown-it-mdc)
+
+Or with Nuxt modules:
 - [Nuxt MDC](https://github.com/nuxt-modules/mdc)
 - [Nuxt Content](https://content.nuxt.com)
 
