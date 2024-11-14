@@ -3,13 +3,13 @@
   "name": "mdc",
   "displayName": "MDC - Markdown Components",
   "injectionSelector": "L:text.html.markdown",
-  "scopeName": "text.markdown.mdc",
+  "scopeName": "text.markdown.mdc.standalone",
   "patterns": [
     {
-      "include": "#component_block"
+      "include": "text.html.markdown#frontMatter"
     },
     {
-      "include": "#inline"
+      "include": "#block"
     }
   ],
   "repository": {

@@ -13,6 +13,8 @@ export const grammar: IRawGrammar = {
   injectionSelector: 'L:text.html.markdown',
   scopeName: 'text.markdown.mdc',
   patterns: [
+    // Use `component_block` and `inline` to inject them into `text.html.markdown`
+    // Using `block` here will cause hightlighting issues in `text.html.markdown`
     {
       include: '#component_block'
     },
@@ -218,16 +220,6 @@ export const grammar: IRawGrammar = {
           }
         },
         {
-          include: '#content'
-        }
-      ]
-    },
-    content: {
-      begin: '(^|\\G)(\\s*)(.*)',
-      while: '(^|\\G)(?!\\s*([:]{2,})\\s*$)',
-      contentName: 'meta.embedded.block.mdc',
-      patterns: [
-        {
           begin: '(^|\\G)(\\s*)(-{3})(\\s*)$',
           end: '(^|\\G)(\\s*(-{3})(\\s*)$)',
           patterns: [
@@ -248,7 +240,6 @@ export const grammar: IRawGrammar = {
           }
         },
         {
-          // 'Block Repository created to disable 4-space raw block inside components',
           include: '#block'
         }
       ]

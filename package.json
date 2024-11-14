@@ -24,17 +24,29 @@
       {
         "id": "mdc",
         "aliases": [
+          "Markdown Components",
           "MDC",
           "mdc",
-          "Markdown Components",
           "Nuxt Content"
         ],
+        "filenamePatterns": [
+          "*.md",
+          "*.mdc"
+        ],
+        "icon": {
+          "dark": "./images/mdc.png",
+          "light": "./images/mdc.png"
+        },
         "configuration": "./language-configuration.json"
       }
     ],
     "grammars": [
       {
         "language": "mdc",
+        "scopeName": "text.markdown.mdc.standalone",
+        "path": "./syntaxes/mdc.standalone.tmLanguage.json"
+      },
+      {
         "scopeName": "text.markdown.mdc",
         "path": "./syntaxes/mdc.tmLanguage.json",
         "injectTo": [
