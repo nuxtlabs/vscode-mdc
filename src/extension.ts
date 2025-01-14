@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { formatter } from '@nuxtlabs/monarch-mdc'
+import { formatter, getDocumentFoldingRanges } from '@nuxtlabs/monarch-mdc'
 
 /**
  * Formats the entire document using the specified formatter and returns the text edits.
@@ -46,48 +46,16 @@ function getDocumentFormatter (document: vscode.TextDocument, isFormatOnType: bo
  * @returns {vscode.FoldingRange[]} - An array of `vscode.FoldingRange` objects representing the folding regions.
  */
 function provideFoldingRanges (document: vscode.TextDocument): vscode.FoldingRange[] {
-  const ranges: vscode.FoldingRange[] = []
-  const stack: { start: number, tagName: string, colons: number }[] = []
-  let insideCodeBlock = false
-
-  for (let lineNumber = 0; lineNumber < document.lineCount; lineNumber++) {
-    const line = document.lineAt(lineNumber).text.trim()
-
-    // Check if the current line starts or ends a markdown code block
-    if (/^\s*(?:`{3,}|~{3,})/.test(line)) {
-      insideCodeBlock = !insideCodeBlock
-      continue
-    }
-
-    // Skip processing lines inside a markdown code block
-    if (insideCodeBlock) {
-      continue
-    }
-
-    // Match the start tag (e.g., "::container" or ":::button")
-    const startMatch = line.match(/^\s*(:{2,})([\w-]+)/)
-    if (startMatch) {
-      stack.push({
-        start: lineNumber,
-        tagName: startMatch[2],
-        colons: startMatch[1].length
-      })
-      continue
-    }
-
-    // Match the end tag (e.g., "::" or ":::" with matching opening tag level)
-    const endMatch = line.match(/^\s*(:{2,})$/)
-    if (endMatch && stack.length > 0) {
-      const colonCount = endMatch[1].length
-      const lastBlock = stack[stack.length - 1]
-      if (lastBlock && lastBlock.colons === colonCount) {
-        stack.pop()
-        ranges.push(new vscode.FoldingRange(lastBlock.start, lineNumber))
-      }
-    }
+  const documentAdapter = {
+    getLine: (lineNumber: number) => document.lineAt(lineNumber).text,
+    lineCount: document.lineCount
   }
 
-  return ranges
+  const ranges = getDocumentFoldingRanges(documentAdapter)
+
+  return ranges.map(range =>
+    new vscode.FoldingRange(range.start, range.end)
+  )
 }
 
 const mdcDocumentSelector: vscode.DocumentSelector = [
