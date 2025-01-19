@@ -9,6 +9,9 @@
       "include": "text.html.markdown#frontMatter"
     },
     {
+      "include": "#inline"
+    },
+    {
       "include": "#block"
     }
   ],
