@@ -92,7 +92,7 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
-    "@nuxtlabs/monarch-mdc": "^0.3.0",
+    "@nuxtlabs/monarch-mdc": "^0.5.0",
     "@types/node": "^18.19.70",
     "@types/vscode": "1.42.0",
     "@vscode/vsce": "^2.32.0",

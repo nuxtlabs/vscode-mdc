@@ -12,8 +12,8 @@ importers:
         specifier: ^12.1.0
         version: 12.1.0(eslint@8.57.1)(typescript@5.2.2)
       '@nuxtlabs/monarch-mdc':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.5.0
+        version: 0.5.0
       '@types/node':
         specifier: ^18.19.70
         version: 18.19.70
@@ -289,8 +289,8 @@ packages:
     peerDependencies:
       eslint: ^8.23.0
 
-  '@nuxtlabs/monarch-mdc@0.3.0':
-    resolution: {integrity: sha512-v+ei1gEUjX/I1VZPgpX+LJ97we7wKXLhy5jvS038IxEHhugxP7lANORlltQ8hPbAjiXDj0oO3K33yv5AaeSmTg==}
+  '@nuxtlabs/monarch-mdc@0.5.0':
+    resolution: {integrity: sha512-yUklZy2U6MVeyFHTl+BF0PmuRdyRopPZmnleTfky0Rg6ZVJekR9yxoYfrrv+RZxjpug9FgjbW0zSUNUqPLoDRA==}
 
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
@@ -2752,7 +2752,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  '@nuxtlabs/monarch-mdc@0.3.0': {}
+  '@nuxtlabs/monarch-mdc@0.5.0': {}
 
   '@rtsao/scc@1.1.0': {}
 
