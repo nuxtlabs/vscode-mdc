@@ -644,7 +644,12 @@ export function getMdcComponentPropCompletionItemProvider (
     }
 
     suggestionsByComponent.get(currentMdcBlockName)!.push({
-      label: propNameKebab,
+      // @ts-ignore - This satisfies the `CompletionItemLabel` interface: https://code.visualstudio.com/api/references/vscode-api#CompletionItemLabel
+      label: {
+        label: propNameKebab,
+        description: prop.type?.replace('| undefined', '').replace('| null', ''), // Shows up as gray text next to the label
+        detail: prop.required ? ' (required)' : undefined // Shows up as dimmed text after description
+      },
       filterText: `${propNameKebab} ${propNameCamel}`,
       sortText: prop.required ? '_' + propNameKebab : propNameKebab, // Force "required" props to the top
       kind: vscode.CompletionItemKind.Property,
