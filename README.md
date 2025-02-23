@@ -70,9 +70,9 @@ _Italic Text_{#italic_text}
 
 The extension provides intelligent auto-completion for MDC components and their properties when provided with a `mdc.componentMetadataURL` in your VS Code settings.
 
-When typing a colon (`:`) at the start of a line, it suggests available component names. Within MDC component YAML frontmatter sections (between `---`), it provides contextual property suggestions with proper types and documentation.
+When typing a colon (`:`) in your MDC document, the extension will suggest available component names. Within MDC component YAML frontmatter sections (between `---`), the extension provides contextual prop suggestions (including nested props) with types and documentation where provided.
 
-Configure component suggestions by setting the `mdc.componentMetadataURL` in your VS Code settings. This URL should return JSON data in the following format:
+The endpoint provided to `mdc.componentMetadataURL` should return JSON data in the following format:
 
 ```typescript
 interface MDCComponentData {
@@ -91,9 +91,16 @@ interface MDCComponentData {
 type MDCMetadataResponse = MDCComponentData[]
 ```
 
-The extension caches component metadata for 6 hours and provides a command `MDC: Refresh Component Metadata` to manually update the cache.
+To configure the metadata URL for your project, create or edit `.vscode/settings.json` in your project's root directory:
 
-To customize the cache TTL you may customize the value for `mdc.componentMetadataCacheTTL` in settings. Defaults to `360` minutes (6 hours).
+```json
+{
+  "mdc.componentMetadataURL": "https://example.com/api/mdc-components",
+  "mdc.componentMetadataCacheTTL": 360 // Cache duration in minutes
+}
+```
+
+The extension caches component metadata for 6 hours and provides a command `MDC: Refresh Component Metadata` to manually update the cache. To customize the cache TTL you may customize the value for `mdc.componentMetadataCacheTTL` in settings. Defaults to `360` minutes (6 hours).
 
 ### For more information
 
