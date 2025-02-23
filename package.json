@@ -68,15 +68,41 @@
         "path": "./snippets/markdown.code-snippets"
       }
     ],
+    "configuration": {
+      "title": "MDC - Markdown Components",
+      "properties": {
+        "mdc.componentMetadataURL": {
+          "type": "string",
+          "default": "",
+          "description": "The URL from which to fetch MDC (Markdown Component) metadata."
+        },
+        "mdc.componentMetadataCacheTTL": {
+          "type": "number",
+          "default": 360,
+          "description": "The number of minutes to cache the MDC (Markdown Component) metadata. Defaults to 360 (6 hours)."
+        },
+        "mdc.debug": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable component metadata debug logging"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "mdc.showOutput",
+        "title": "Show extension output",
+        "category": "MDC"
+      },
+      {
+        "command": "mdc.refreshMetadata",
+        "title": "Refresh component metadata",
+        "category": "MDC"
+      }
+    ],
     "configurationDefaults": {
       "[mdc]": {
-        "editor.folding": true,
-        "editor.formatOnSave": true,
-        "editor.formatOnType": true,
-        "editor.formatOnPaste": true,
-        "editor.detectIndentation": false,
-        "editor.insertSpaces": true,
-        "editor.tabSize": 2
+        "editor.folding": true
       }
     }
   },
@@ -91,6 +117,7 @@
     "publish": "vsce publish --no-dependencies"
   },
   "devDependencies": {
+    "@nuxt/schema": "^3.15.4",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtlabs/monarch-mdc": "^0.5.0",
     "@types/node": "^18.19.70",
@@ -101,6 +128,10 @@
     "standard-version": "^9.5.0",
     "typescript": "5.2.2",
     "vscode": "^1.1.37",
-    "vscode-textmate": "^9.2.0"
+    "vscode-textmate": "^9.2.0",
+    "vue-component-meta": "^2.2.4"
+  },
+  "dependencies": {
+    "scule": "^1.3.0"
   }
 }
