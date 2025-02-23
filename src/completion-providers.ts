@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 import { kebabCase, camelCase } from 'scule'
 import * as vscode from 'vscode'
 import type { ComponentMeta } from 'vue-component-meta'
@@ -17,7 +18,7 @@ export interface MDCComponentData {
   description?: string
   /** Component documentation, provided via Markdown string. */
   documentation_markdown?: string
-  /** The documentation URL for the component. Defaults to: `https://portaldocs.konghq.com/components/{component-name}`. */
+  /** The documentation URL for the component. */
   docs_url?: string
   /** MDC component meta */
   component_meta: MDCComponentMeta
@@ -45,7 +46,7 @@ const docsLinkCache = new Map<string, string>()
 const yamlBlockBoundaryCache = new WeakMap<vscode.TextDocument, Map<number, { start: number, end: number }>>()
 
 /**
- * Retrieves the lines of content from a Monaco editor model, using cache when available.
+ * Retrieves the lines of content from a vscode document, using cache when available.
  *
  * @param {vscode.TextDocument} document - The VS Code text document
  * @returns {string[]} - Array of text lines from the document
