@@ -6,7 +6,7 @@
 [![MDC Extension for VS Code][extension-downloads-src]][extension-href]
 [![MDC Extension for VS Code][extension-installs-src]][extension-href]
 
-Provides syntax highlighting and colon (`:`) matching for MDC (Markdown Components) files.
+Provides syntax highlighting and colon (`:`) matching for MDC (Markdown Components) files, as well as document folding and a format provider.
 
 - [Download VS Code extension](https://marketplace.visualstudio.com/items?itemName=Nuxt.mdc)
 
@@ -65,6 +65,19 @@ Hello [World]{.text-primary-500}!
 
 _Italic Text_{#italic_text}
 ```
+
+### Document folding
+
+The extension enables document code folding for MDC block components (and nested components). Simply hover over the gutter of the line you'd like to fold and click on the icon to expand or collapse the range.
+
+![code folding animation](images/code-folding.gif)
+
+### Formatting
+
+The plugin also enables a document format provider. You may customize the settings in your project's `.vscode/settings.json` to override `formatOnType` etc.
+
+> [!Note]
+> Since the format provider utilizes spaces for indention, you may also need to configure your project to insert spaces for tabs within `.mdc` or `.md` files.
 
 ### For more information
 
