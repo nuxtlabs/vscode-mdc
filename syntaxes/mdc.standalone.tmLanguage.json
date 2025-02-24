@@ -9,15 +9,15 @@
       "include": "text.html.markdown#frontMatter"
     },
     {
-      "include": "#inline"
-    },
-    {
       "include": "#block"
     }
   ],
   "repository": {
     "block": {
       "patterns": [
+        {
+          "include": "#inline"
+        },
         {
           "include": "#component_block"
         },
