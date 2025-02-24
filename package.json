@@ -17,8 +17,10 @@
   },
   "categories": [
     "Programming Languages",
+    "Formatters",
     "Snippets"
   ],
+  "main": "./out/extension.js",
   "contributes": {
     "languages": [
       {
@@ -27,7 +29,9 @@
           "Markdown Components",
           "MDC",
           "mdc",
-          "Nuxt Content"
+          "Nuxt Content",
+          "Nuxt MDC",
+          "Nuxt Markdown Components"
         ],
         "filenamePatterns": [
           "*.md",
@@ -37,7 +41,10 @@
           "dark": "./images/mdc.png",
           "light": "./images/mdc.png"
         },
-        "configuration": "./language-configuration.json"
+        "configuration": "./language-configuration.json",
+        "extensions": [
+          ".mdc"
+        ]
       }
     ],
     "grammars": [
@@ -60,12 +67,23 @@
         "language": "mdc",
         "path": "./snippets/markdown.code-snippets"
       }
-    ]
+    ],
+    "configurationDefaults": {
+      "[mdc]": {
+        "editor.folding": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.formatOnPaste": true,
+        "editor.detectIndentation": false,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run build",
-    "build": "esno scripts/build.ts",
-    "dev": "esno watch scripts/build.ts",
+    "build": "tsc -p ./ && esno scripts/build.ts",
+    "dev": "tsc -p ./ && esno watch scripts/build.ts",
     "lint": "eslint src --ext ts",
     "test": "vitest",
     "release": "standard-version && git push --follow-tags",
@@ -74,13 +92,15 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
-    "@types/node": "^18.17.12",
+    "@nuxtlabs/monarch-mdc": "^0.5.0",
+    "@types/node": "^18.19.70",
     "@types/vscode": "1.42.0",
-    "@vscode/vsce": "^2.21.0",
-    "eslint": "^8.48.0",
+    "@vscode/vsce": "^2.32.0",
+    "eslint": "^8.57.1",
     "esno": "^0.17.0",
     "standard-version": "^9.5.0",
     "typescript": "5.2.2",
-    "vscode-textmate": "^9.0.0"
+    "vscode": "^1.1.37",
+    "vscode-textmate": "^9.2.0"
   }
 }
