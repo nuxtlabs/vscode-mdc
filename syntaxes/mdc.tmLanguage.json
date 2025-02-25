@@ -1,7 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "mdc",
-  "displayName": "MDC - Markdown Components",
   "injectionSelector": "L:text.html.markdown",
   "scopeName": "text.markdown.mdc",
   "patterns": [
