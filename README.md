@@ -84,11 +84,13 @@ Alternatively, to configure per-project, create or edit `.vscode/settings.json` 
 {
   // Required for the extension
   "mdc.enableFormatting": true,
-  // Recommended
-  "editor.tabSize": 2,
-  "editor.insertSpaces": true,
-  "editor.detectIndentation": false,
-  "editor.formatOnPaste": true,
+  // Recommended (for `mdc` and `md`, depending on your usage)
+  "[mdc]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.formatOnPaste": true
+  }
 }
 ```
 
