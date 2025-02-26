@@ -65,26 +65,48 @@ const mdcDocumentSelector: vscode.DocumentSelector = [
 ]
 
 export function activate (context: vscode.ExtensionContext) {
-  // Register the document formatting provider
-  const documentFormattingProvider = vscode.languages.registerDocumentFormattingEditProvider(mdcDocumentSelector, {
-    provideDocumentFormattingEdits: (document: vscode.TextDocument): vscode.TextEdit[] => getDocumentFormatter(document, false)
-  })
+  let formatters: vscode.Disposable[] = []
 
-  // Register the format on type provider
-  const onTypeFormattingProvider = vscode.languages.registerOnTypeFormattingEditProvider(mdcDocumentSelector, {
-    provideOnTypeFormattingEdits: (document: vscode.TextDocument): vscode.TextEdit[] => getDocumentFormatter(document, true)
-  },
-  '\n' // Format on typing newline character
-  )
+  // Update any dynamic configuration settings
+  function updateConfiguration () {
+    // Dispose existing formatters
+    formatters.forEach(f => f.dispose())
+    formatters = []
 
-  // Register code folding provider
-  const foldingRangeProvider = vscode.languages.registerFoldingRangeProvider(mdcDocumentSelector, {
-    provideFoldingRanges: (document: vscode.TextDocument): vscode.FoldingRange[] => provideFoldingRanges(document)
-  })
+    // Retrieve the `mdc` configuration settings
+    const config = vscode.workspace.getConfiguration('mdc')
+    const formattingEnabled = config.get<boolean>('enableFormatting', false)
 
+    if (formattingEnabled) {
+      formatters = [
+        // Register the document formatting provider
+        vscode.languages.registerDocumentFormattingEditProvider(mdcDocumentSelector, {
+          provideDocumentFormattingEdits: (document: vscode.TextDocument) => getDocumentFormatter(document, false)
+        }),
+        // Register the format on type provider
+        vscode.languages.registerOnTypeFormattingEditProvider(
+          mdcDocumentSelector,
+          { provideOnTypeFormattingEdits: (document: vscode.TextDocument) => getDocumentFormatter(document, true) },
+          '\n'
+        )
+      ]
+      // Add formatters to subscriptions
+      context.subscriptions.push(...formatters)
+    }
+  }
+
+  // Add static and config change subscriptions
   context.subscriptions.push(
-    documentFormattingProvider,
-    onTypeFormattingProvider,
-    foldingRangeProvider
+    // Register folding range provider
+    vscode.languages.registerFoldingRangeProvider(mdcDocumentSelector, { provideFoldingRanges }),
+    // Register configuration change listener
+    vscode.workspace.onDidChangeConfiguration((e) => {
+      if (e.affectsConfiguration('mdc')) {
+        updateConfiguration()
+      }
+    })
   )
+
+  // Initial setup
+  updateConfiguration()
 }
