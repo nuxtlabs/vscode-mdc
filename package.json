@@ -13,7 +13,7 @@
   "homepage": "https://github.com/nuxtlabs/vscode-mdc/blob/main/README.md",
   "license": "MIT",
   "engines": {
-    "vscode": "^1.42.0"
+    "vscode": "^1.75.0"
   },
   "categories": [
     "Programming Languages",
@@ -91,12 +91,11 @@
     "lint": "eslint src --ext ts",
     "test": "vitest",
     "release": "standard-version && git push --follow-tags",
-    "generate": "vsce package --no-dependencies",
-    "publish": "vsce publish --no-dependencies"
+    "generate": "vsce package",
+    "publish": "vsce publish"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
-    "@nuxtlabs/monarch-mdc": "^0.5.0",
     "@types/node": "^18.19.70",
     "@types/vscode": "1.42.0",
     "@vscode/vsce": "^2.32.0",
@@ -106,5 +105,8 @@
     "typescript": "5.2.2",
     "vscode": "^1.1.37",
     "vscode-textmate": "^9.2.0"
+  },
+  "dependencies": {
+    "@nuxtlabs/monarch-mdc": "^0.5.0"
   }
 }
