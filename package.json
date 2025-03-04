@@ -1,5 +1,5 @@
 {
-  "name": "vscode-mdc",
+  "name": "mdc",
   "packageManager": "pnpm@9.15.6",
   "displayName": "MDC - Markdown Components",
   "description": "Provides syntax highlighting and colon matching for MDC (Markdown Components) files for Nuxt Content.",
