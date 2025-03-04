@@ -1,5 +1,5 @@
 {
-  "name": "mdc",
+  "name": "vscode-mdc",
   "packageManager": "pnpm@9.15.6",
   "displayName": "MDC - Markdown Components",
   "description": "Provides syntax highlighting and colon matching for MDC (Markdown Components) files for Nuxt Content.",
@@ -90,7 +90,7 @@
     "dev": "tsc -p ./ && esno watch scripts/build.ts",
     "lint": "eslint src --ext ts",
     "test": "vitest",
-    "release": "standard-version && git push --follow-tags",
+    "release": "release-it",
     "generate": "vsce package",
     "publish": "vsce publish"
   },
@@ -101,12 +101,27 @@
     "@vscode/vsce": "^2.32.0",
     "eslint": "^8.57.1",
     "esno": "^0.17.0",
-    "standard-version": "^9.5.0",
+    "release-it": "^18.1.2",
     "typescript": "5.2.2",
     "vscode": "^1.1.37",
     "vscode-textmate": "^9.2.0"
   },
   "dependencies": {
     "@nuxtlabs/monarch-mdc": "^0.5.0"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore(release): release v${version}"
+    },
+    "github": {
+      "release": true,
+      "releaseName": "v${version}"
+    },
+    "npm": {
+      "publish": false
+    },
+    "hooks": {
+      "after:bump": "npx changelogen@latest --no-commit --no-tag --output --r $(node -p \"require('./package.json').version\")"
+    }
   }
 }
