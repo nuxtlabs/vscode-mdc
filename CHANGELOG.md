@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v0.2.2
+
+[compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.2.1...v0.2.2)
+
+### 🏡 Chore
+
+- Use release-it ([9af2154](https://github.com/nuxtlabs/vscode-mdc/commit/9af2154))
+
+### 🤖 CI
+
+- Fix release job ([2684050](https://github.com/nuxtlabs/vscode-mdc/commit/2684050))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+
 ### [0.2.1](https://github.com/nuxtlabs/vscode-mdc/compare/v0.2.0...v0.2.1) (2025-03-04)
 
 
