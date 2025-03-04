@@ -20,7 +20,7 @@ jobs:
       - run: pnpm install
 
       - name: Generate extension
-        run: yarn generate
+        run: pnpm generate
 
       - name: Publish to Visual Studio Marketplace
         uses: HaaLeo/publish-vscode-extension@v1
