@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v0.2.3
+
+[compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.2.2...v0.2.3)
+
+### 🩹 Fixes
+
+- Package name ([d16b9d5](https://github.com/nuxtlabs/vscode-mdc/commit/d16b9d5))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+
 ## v0.2.2
 
 [compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.2.1...v0.2.2)
