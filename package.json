@@ -62,6 +62,83 @@
         ]
       }
     ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "markdown.showPreviewToSide",
+          "when": "editorLangId == mdc && !notebookEditorFocused && !hasCustomMarkdownPreview",
+          "alt": "markdown.showPreview",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "markdown.showPreview",
+          "when": "resourceLangId == mdc && !hasCustomMarkdownPreview",
+          "group": "navigation"
+        },
+        {
+          "command": "markdown.findAllFileReferences",
+          "when": "resourceLangId == mdc",
+          "group": "4_search"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "markdown.showPreview",
+          "when": "resourceLangId == mdc && !hasCustomMarkdownPreview",
+          "group": "1_open"
+        },
+        {
+          "command": "markdown.findAllFileReferences",
+          "when": "resourceLangId == mdc"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "markdown.showPreview",
+          "when": "editorLangId == mdc && !notebookEditorFocused",
+          "group": "navigation"
+        },
+        {
+          "command": "markdown.showPreviewToSide",
+          "when": "editorLangId == mdc && !notebookEditorFocused",
+          "group": "navigation"
+        },
+        {
+          "command": "markdown.showLockedPreviewToSide",
+          "when": "editorLangId == mdc && !notebookEditorFocused",
+          "group": "navigation"
+        },
+        {
+          "command": "markdown.showPreviewSecuritySelector",
+          "when": "editorLangId == mdc && !notebookEditorFocused"
+        },
+        {
+          "command": "markdown.preview.refresh",
+          "when": "editorLangId == mdc && !notebookEditorFocused"
+        },
+        {
+          "command": "markdown.findAllFileReferences",
+          "when": "editorLangId == mdc"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "markdown.showPreview",
+        "key": "shift+ctrl+v",
+        "mac": "shift+cmd+v",
+        "when": "editorLangId == mdc && !notebookEditorFocused"
+      },
+      {
+        "command": "markdown.showPreviewToSide",
+        "key": "ctrl+k v",
+        "mac": "cmd+k v",
+        "when": "editorLangId == mdc && !notebookEditorFocused"
+      }
+    ],
+
     "snippets": [
       {
         "language": "mdc",
