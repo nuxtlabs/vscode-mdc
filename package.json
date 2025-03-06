@@ -3,7 +3,7 @@
   "packageManager": "pnpm@9.15.6",
   "displayName": "MDC - Markdown Components",
   "description": "Provides syntax highlighting and colon matching for MDC (Markdown Components) files for Nuxt Content.",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "publisher": "Nuxt",
   "icon": "images/icon.png",
   "repository": {
@@ -138,7 +138,6 @@
         "when": "editorLangId == mdc && !notebookEditorFocused"
       }
     ],
-
     "snippets": [
       {
         "language": "mdc",

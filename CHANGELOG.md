@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v0.2.4
+
+[compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.2.3...v0.2.4)
+
+### 🩹 Fixes
+
+- Show markdown preview menus ([#49](https://github.com/nuxtlabs/vscode-mdc/pull/49))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+
 ## v0.2.3
 
 ### [0.2.3](https://github.com/nuxtlabs/vscode-mdc/compare/v0.2.0...v0.2.3) (2025-03-04)
