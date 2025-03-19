@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v0.2.4
+
+[compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.2.3...v0.2.4)
+
+### 🩹 Fixes
+
+- Show markdown preview menus ([#49](https://github.com/nuxtlabs/vscode-mdc/pull/49))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+
+## v0.2.3
+
+### [0.2.3](https://github.com/nuxtlabs/vscode-mdc/compare/v0.2.0...v0.2.3) (2025-03-04)
+
+
+> [!IMPORTANT]
+>  As of this version, the extension introduces executable code to format and fold documents ([#41](https://github.com/nuxtlabs/vscode-mdc/issues/41)). Due to this change, VSCode auto-update does not update the extension automatically; you need to manually update it. 
+
+### 🚀 Features
+
+* add document formatting and code folding providers ([#41](https://github.com/nuxtlabs/vscode-mdc/issues/41)) ([866de6e](https://github.com/nuxtlabs/vscode-mdc/commit/866de6e93440afc6f42594610ef1d0c22b661123))
+
+
+### 🩹 Bug Fixes
+
+*  create `mdc.standalone` to use separately outside of markdown language ([45d4f42](https://github.com/nuxtlabs/vscode-mdc/commit/45d4f426aa51b8d6a6b2e719ed2bc8f617bd3919))
+* **formatting:** make formatting opt-in ([#45](https://github.com/nuxtlabs/vscode-mdc/issues/45)) ([58a8bed](https://github.com/nuxtlabs/vscode-mdc/commit/58a8bedde552f14e89cc48b47606e077f2ee3e02))
+* **packaging:** properly package dependencies ([#46](https://github.com/nuxtlabs/vscode-mdc/issues/46)) ([545791f](https://github.com/nuxtlabs/vscode-mdc/commit/545791f11561c4ce37ab5e7e9dc5959343613686))
+* **standalone:** include inline syntax ([#42](https://github.com/nuxtlabs/vscode-mdc/issues/42)) ([96f619c](https://github.com/nuxtlabs/vscode-mdc/commit/96f619ccd8df724e5bd94eb28b87e03b769a8c41))
+
+
 ## [0.2.0](https://github.com/nuxtlabs/vscode-mdc/compare/v0.1.8...v0.2.0) (2023-09-01)
 
 

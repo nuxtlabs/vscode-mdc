@@ -74,10 +74,28 @@ The extension enables document code folding for MDC block components (and nested
 
 ### Formatting
 
-The plugin also enables a document format provider. You may customize the settings in your project's `.vscode/settings.json` to override `formatOnType` etc.
+The plugin also enables a document format provider, disabled by default.
+
+To globally configure document formatting in VS Code, search for `mdc.enableFormatting` in Settings.
+
+Alternatively, to configure per-project, create or edit `.vscode/settings.json` in your project's root directory:
+
+```jsonc
+{
+  // Required for the extension
+  "mdc.enableFormatting": true,
+  // Recommended (for `mdc` and `md`, depending on your usage)
+  "[mdc]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.formatOnPaste": true
+  }
+}
+```
 
 > [!Note]
-> Since the format provider utilizes spaces for indention, you may also need to configure your project to insert spaces for tabs within `.mdc` or `.md` files.
+> Since the format provider utilizes spaces for indention, you may also need to configure your project to insert spaces for tabs within `.mdc` or `.md` files as recommended above.
 
 ### Component name and prop suggestions
 

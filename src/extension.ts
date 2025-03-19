@@ -4,7 +4,7 @@ import { getMdcComponentCompletionItemProvider, getMdcComponentPropCompletionIte
 import { getComponentMetadata } from './component-metadata'
 import { ensureOutputChannel, logger } from './logger'
 
-let outputChannel: vscode.OutputChannel | null = null
+const outputChannel: vscode.OutputChannel | null = null
 
 /**
  * Formats the entire document using the specified formatter and returns the text edits.
@@ -70,100 +70,48 @@ const mdcDocumentSelector: vscode.DocumentSelector = [
 ]
 
 export function activate (context: vscode.ExtensionContext) {
-  try {
-    // Initialize output channel
-    outputChannel = ensureOutputChannel(outputChannel)
-    context.subscriptions.push(outputChannel)
+  let formatters: vscode.Disposable[] = []
 
-    logger('Activating MDC extension...', true)
+  // Update any dynamic configuration settings
+  function updateConfiguration () {
+    // Dispose existing formatters
+    formatters.forEach(f => f.dispose())
+    formatters = []
 
-    // Register show output command
-    context.subscriptions.push(
-      vscode.commands.registerCommand('mdc.showOutput', () => {
-        ensureOutputChannel(outputChannel).show(true)
-      })
-    )
+    // Retrieve the `mdc` configuration settings
+    const config = vscode.workspace.getConfiguration('mdc')
+    const formattingEnabled = config.get<boolean>('enableFormatting', false)
 
-    // Register the document formatting provider
-    const documentFormattingProvider = vscode.languages.registerDocumentFormattingEditProvider(mdcDocumentSelector, {
-      provideDocumentFormattingEdits: (document: vscode.TextDocument): vscode.TextEdit[] => getDocumentFormatter(document, false)
-    })
-
-    // Register the format on type provider
-    const onTypeFormattingProvider = vscode.languages.registerOnTypeFormattingEditProvider(mdcDocumentSelector, {
-      provideOnTypeFormattingEdits: (document: vscode.TextDocument): vscode.TextEdit[] => getDocumentFormatter(document, true)
-    },
-    '\n' // Format on typing newline character
-    )
-
-    // Register code folding provider
-    const foldingRangeProvider = vscode.languages.registerFoldingRangeProvider(mdcDocumentSelector, {
-      provideFoldingRanges: (document: vscode.TextDocument): vscode.FoldingRange[] => provideFoldingRanges(document)
-    })
-
-    context.subscriptions.push(
-      documentFormattingProvider,
-      onTypeFormattingProvider,
-      foldingRangeProvider
-    )
-
-    // Register MDC block component completion provider
-    const mdcComponentCompletionProvider = vscode.languages.registerCompletionItemProvider(mdcDocumentSelector, {
-      provideCompletionItems: async (document, position) => {
-        const mdcComponents = await getComponentMetadata()
-        // If no components, exit early
-        if (!mdcComponents || !mdcComponents?.length) {
-          return
-        }
-        return getMdcComponentCompletionItemProvider(mdcComponents, { document, position })
-      }
-    },
-    ':' // Trigger on colon
-    )
-
-    // Register MDC block component completion provider
-    const mdcComponentPropsCompletionProvider = vscode.languages.registerCompletionItemProvider(mdcDocumentSelector, {
-      provideCompletionItems: async (document, position) => {
-        const mdcComponents = await getComponentMetadata()
-        // If no components, exit early
-        if (!mdcComponents || !mdcComponents?.length) {
-          return
-        }
-        return getMdcComponentPropCompletionItemProvider(mdcComponents, { document, position })
-      }
-    },
-    '\n', // Trigger newline
-    ' ' // Trigger on space character
-    )
-
-    // Initial metadata fetch
-    getComponentMetadata(true).then(() => {
-      logger('Initial MDC component metadata fetch completed')
-
-      context.subscriptions.push(
-        mdcComponentCompletionProvider,
-        mdcComponentPropsCompletionProvider
-      )
-
-      // Register refresh metadata command
-      context.subscriptions.push(
-        vscode.commands.registerCommand('mdc.refreshMetadata', async () => {
-          await getComponentMetadata(true)
-        })
-      )
-    })
-  } catch (error: any) {
-    const errorMessage = `Error activating MDC extension: ${error.message}`
-    if (outputChannel) {
-      logger(errorMessage, true)
+    if (formattingEnabled) {
+      formatters = [
+        // Register the document formatting provider
+        vscode.languages.registerDocumentFormattingEditProvider(mdcDocumentSelector, {
+          provideDocumentFormattingEdits: (document: vscode.TextDocument) => getDocumentFormatter(document, false)
+        }),
+        // Register the format on type provider
+        vscode.languages.registerOnTypeFormattingEditProvider(
+          mdcDocumentSelector,
+          { provideOnTypeFormattingEdits: (document: vscode.TextDocument) => getDocumentFormatter(document, true) },
+          '\n'
+        )
+      ]
+      // Add formatters to subscriptions
+      context.subscriptions.push(...formatters)
     }
-    vscode.window.showErrorMessage(errorMessage)
-    throw error // Re-throw to ensure VS Code knows activation failed
   }
-}
 
-export function deactivate (): void {
-  if (outputChannel) {
-    outputChannel.dispose()
-  }
+  // Add static and config change subscriptions
+  context.subscriptions.push(
+    // Register folding range provider
+    vscode.languages.registerFoldingRangeProvider(mdcDocumentSelector, { provideFoldingRanges }),
+    // Register configuration change listener
+    vscode.workspace.onDidChangeConfiguration((e) => {
+      if (e.affectsConfiguration('mdc')) {
+        updateConfiguration()
+      }
+    })
+  )
+
+  // Initial setup
+  updateConfiguration()
 }
