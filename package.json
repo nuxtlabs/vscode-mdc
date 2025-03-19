@@ -152,20 +152,35 @@
           "default": false,
           "description": "Enable MDC document formatting."
         },
+        "mdc.enableComponentMetadataCompletions": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable MDC name and component prop auto-completions."
+        },
+        "mdc.componentMetadataLocalFilePattern": {
+          "type": "string",
+          "default": "**/.nuxt/component-meta.mjs",
+          "description": "A glob pattern to a local MDC component metadata file. Defaults to: `**/.nuxt/component-meta.mjs`"
+        },
+        "mdc.componentMetadataLocalExcludePattern": {
+          "type": "string",
+          "default": "{**/node_modules/**,**/dist/**,**/.output/**,**/.cache/**,**/.playground/**}",
+          "description": "A glob pattern to exclude directories from the local MDC component metadata search. Defaults to: `{**/node_modules/**,**/dist/**,**/.output/**,**/.cache/**,**/.playground/**}`"
+        },
         "mdc.componentMetadataURL": {
           "type": "string",
           "default": "",
-          "description": "The URL from which to fetch MDC (Markdown Component) metadata."
+          "description": "A remote or localhost URL from which to fetch the MDC completion metadata. When not set, the extension will fallback to attempting to discover component metadata from the `mdc.componentMetadataLocalFilePattern` setting. This can be a remote URL or localhost URL that must return one of the documented response formats."
         },
         "mdc.componentMetadataCacheTTL": {
           "type": "number",
-          "default": 360,
-          "description": "The number of minutes to cache the MDC (Markdown Component) metadata. Defaults to 360 (6 hours)."
+          "default": 30,
+          "description": "The number of minutes to cache the MDC metadata. Defaults to 30 minutes (1 hour)."
         },
         "mdc.debug": {
           "type": "boolean",
           "default": false,
-          "description": "Enable component metadata debug logging"
+          "description": "Enable extension debug logging."
         }
       }
     },

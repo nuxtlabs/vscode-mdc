@@ -23,12 +23,12 @@ export function ensureOutputChannel (_outputChannel?: vscode.OutputChannel | nul
  * @param force - If true, shows the output channel and logs the message regardless of debug setting. Defaults to false.
  * @returns void
  */
-export function logger (message: string, force = false): void {
+export function logger (message: string, type: 'info' | 'error' = 'info', force = false): void {
   const channel = ensureOutputChannel()
   const config = vscode.workspace.getConfiguration('mdc')
   if (config.get('debug') || force) {
     const timestamp = new Date().toISOString()
-    channel.appendLine(`[${timestamp}] ${message}`)
+    channel.appendLine(`${timestamp} [${type}]: ${message}`)
     if (force) {
       channel.show(true)
     }

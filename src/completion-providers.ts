@@ -3,9 +3,15 @@ import { kebabCase, camelCase } from 'scule'
 import * as vscode from 'vscode'
 import type { ComponentMeta } from 'vue-component-meta'
 import type { Component } from '@nuxt/schema'
+import { logger } from './logger'
 
 type MDCComponentMeta = Omit<Component, 'filePath' | 'shortPath'> & {
   meta: ComponentMeta
+  mode?: string
+  global?: boolean
+  pascalName?: string
+  kebabName?: string
+  chunkName?: string
   fullPath?: string
   filePath?: string
   shortPath?: string
@@ -168,7 +174,10 @@ function isInsideMDCComponent (document: vscode.TextDocument, lineNumber: number
   const componentStack: string[] = []
 
   for (let i = 0; i < lineNumber; i++) {
-    const line = lines[i]?.trim()
+    const line = lines?.[i]?.trim()
+    if (!line) {
+      continue
+    }
 
     // Check for component start
     const startMatch = line.match(MDC_COMPONENT_START_REGEX)
@@ -199,7 +208,10 @@ function isInsideYAMLBlock (document: vscode.TextDocument, lineNumber: number): 
   let insideYAMLBlock = false
 
   for (let i = 0; i < lineNumber; i++) {
-    const line = lines[i]?.trim()
+    const line = lines?.[i]?.trim()
+    if (!line) {
+      continue
+    }
     // Toggle insideYAMLBlock flag when encountering YAML block delimiters (---)
     if (/^\s*---\s*$/.test(line)) {
       insideYAMLBlock = !insideYAMLBlock
@@ -222,7 +234,10 @@ function isInsideCodeBlock (document: vscode.TextDocument, lineNumber: number): 
   let insideCodeBlock = false
 
   for (let i = 0; i < lineNumber; i++) {
-    const line = lines[i]?.trim()
+    const line = lines?.[i]?.trim()
+    if (!line) {
+      continue
+    }
     // Toggle insideCodeBlock flag when encountering a code block delimiter (``` or ~~~)
     if (/^\s*(?:`{3,}|~{3,})/.test(line)) {
       insideCodeBlock = !insideCodeBlock
@@ -300,7 +315,10 @@ function getCurrentMDCComponentName (document: vscode.TextDocument, lineNumber: 
 
   // Scan through lines up to current position
   for (let i = 0; i < lineNumber; i++) {
-    const line = lines[i]?.trim()
+    const line = lines?.[i]?.trim()
+    if (!line) {
+      continue
+    }
 
     // Check for component start
     const startMatch = line.match(MDC_COMPONENT_START_REGEX)
@@ -315,7 +333,8 @@ function getCurrentMDCComponentName (document: vscode.TextDocument, lineNumber: 
     }
   }
 
-  // Return the last component name in the stack (current nesting level)
+  // Get the most recently added component (last item in stack)
+  // This will be the innermost component at the cursor position
   const currentComponent = componentStack[componentStack.length - 1]
   return currentComponent?.name
 }
@@ -395,14 +414,15 @@ function getCurrentYAMLPath (document: vscode.TextDocument, lineNumber: number):
   // Handle case where we're at line start
   if (lineNumber <= 0 || lineNumber > lines.length) { return path }
 
-  const currentLine = lines[lineNumber - 1]
+  // VS Code lines are **not** zero-based, do **not** need to subtract 1
+  const currentLine = lines[lineNumber]
   const currentIndentation = currentLine.length - currentLine.trimStart().length
 
   const boundaries = getYAMLBlockBoundaries(document, lineNumber)
   if (!boundaries) { return path }
 
-  // Scan within the current YAML block only
   let lastIndentation = currentIndentation
+  // Scan backwards to find parent prop
   for (let i = lineNumber - 1; i >= boundaries.start; i--) {
     const line = lines[i]
     const lineIndentation = line.length - line.trimStart().length
@@ -411,8 +431,12 @@ function getCurrentYAMLPath (document: vscode.TextDocument, lineNumber: number):
     // Skip empty lines, YAML block markers, or lines beyond the block end
     if (!trimmedLine || trimmedLine === '---' || i > boundaries.end) { continue }
 
-    // If this line has less indentation and ends with a colon, it's a parent prop
-    if (lineIndentation < lastIndentation && trimmedLine.includes(':')) {
+    // A line is a potential parent if:
+    // 1. It ends with a colon (allowing for whitespace)
+    // 2. It has less indentation than current line
+    const isParentProp = trimmedLine.match(/:\s*$/) && lineIndentation < lastIndentation
+
+    if (isParentProp) {
       const propMatch = trimmedLine.match(/^([\w-]+):/)?.[1]
       if (propMatch) {
         path.unshift(propMatch)
@@ -461,10 +485,7 @@ function getCurrentYAMLBlockProps (document: vscode.TextDocument, lineNumber: nu
  * @param {MdcCompletionItemProviderConfig} { document, position }
  * @return {*}  {(vscode.CompletionItem[] | undefined)}
  */
-export function getMdcComponentCompletionItemProvider (
-  componentData: MDCComponentData[] = [],
-  { document, position }: MdcCompletionItemProviderConfig
-): vscode.CompletionItem[] | undefined {
+export function getMdcComponentCompletionItemProvider (componentData: MDCComponentData[] = [], { document, position }: MdcCompletionItemProviderConfig): vscode.CompletionItem[] | undefined {
   // Get the text until the current cursor position
   const lineContent = document.lineAt(position.line).text
   const textUntilPosition = lineContent.slice(0, position.character)
@@ -550,10 +571,7 @@ export function getMdcComponentCompletionItemProvider (
  * @param {MdcCompletionItemProviderConfig} { document, position }: MdcCompletionItemProviderConfig
  * @return {*}  {(vscode.CompletionItem[] | undefined)}
  */
-export function getMdcComponentPropCompletionItemProvider (
-  componentData: MDCComponentData[] = [],
-  { document, position }: MdcCompletionItemProviderConfig
-): vscode.CompletionItem[] | undefined {
+export function getMdcComponentPropCompletionItemProvider (componentData: MDCComponentData[] = [], { document, position }: MdcCompletionItemProviderConfig): vscode.CompletionItem[] | undefined {
   // Invalidate cache at the start of a new completion request
   invalidateLineCache(document)
   // Get the text until the current cursor position
@@ -566,7 +584,7 @@ export function getMdcComponentPropCompletionItemProvider (
    *
    * Example: `a` or `  a` - it will then suggest MDC component props.
    */
-  const propNamePattern = /^\s*[a-zA-Z]{0,}\s*$/
+  const propNamePattern = /^\s*[a-zA-Z-]{0,}$/
 
   // If conditions not met, exit early
   if (
@@ -639,7 +657,7 @@ export function getMdcComponentPropCompletionItemProvider (
         return `${name}: ` + '"${0:}"'
       } else {
         // Object
-        return `${name}: ` + '\n  ${0:# child-prop}'
+        return `${name}: ` + '\n  ${0:}'
       }
     }
 
@@ -658,11 +676,80 @@ export function getMdcComponentPropCompletionItemProvider (
       detail: prop.description, // Shows up in the details section of the completion item
       documentation: new vscode.MarkdownString(docsMarkdownLink),
       command: {
-        command: 'editor.action.formatDocument',
-        title: 'Format Document'
+        command: 'editor.action.triggerSuggest',
+        title: 'Trigger Suggestions'
       }
     })
   }
 
   return Array.from(suggestionsByComponent.values()).flat()
+}
+
+/**
+ * Creates document lifecycle listeners to manage cache cleanup
+ */
+export function createCacheCleanupListeners (): vscode.Disposable {
+  const watchedDocuments = new Set<string>()
+
+  /**
+   * Check if the document is a markdown or MDC file by checking both extension and language ID
+   */
+  function isMarkdownOrMDCDocument (document: vscode.TextDocument): boolean {
+    const extension = document.uri.fsPath.toLowerCase()
+    const isMDCOrMDFile = extension.endsWith('.mdc') || extension.endsWith('.md')
+    const isMDCOrMDLanguage = document.languageId === 'mdc' || document.languageId === 'markdown'
+    return isMDCOrMDFile || isMDCOrMDLanguage
+  }
+
+  const disposable = vscode.Disposable.from(
+    // Listen for document close events
+    vscode.workspace.onDidCloseTextDocument((document) => {
+      if (!isMarkdownOrMDCDocument(document)) { return }
+
+      const uri = document.uri.toString()
+      if (watchedDocuments.has(uri)) {
+        cleanupDocumentCaches(document)
+        watchedDocuments.delete(uri)
+      }
+    }),
+
+    // Listen for document open events
+    vscode.workspace.onDidOpenTextDocument((document) => {
+      if (!isMarkdownOrMDCDocument(document)) { return }
+
+      watchedDocuments.add(document.uri.toString())
+    })
+  )
+
+  // Return disposable that cleans up everything
+  return {
+    dispose: () => {
+      disposable.dispose()
+      // Clean up any remaining caches
+      propNameCache.clear()
+      nestedPropsCache.clear()
+      propTypeCache.clear()
+      docsLinkCache.clear()
+      watchedDocuments.clear()
+    }
+  }
+}
+
+/**
+ * Cleans up all caches associated with a document
+ */
+function cleanupDocumentCaches (document: vscode.TextDocument): void {
+  logger('Clean up caches for document: ' + document.uri.toString())
+  // Clear document-specific caches
+  lineContentCache.delete(document)
+  yamlBlockBoundaryCache.delete(document)
+
+  // Clear component-related caches if this is the last document
+  if (vscode.workspace.textDocuments.length <= 1) {
+    logger('Clean up component-related caches')
+    propNameCache.clear()
+    nestedPropsCache.clear()
+    propTypeCache.clear()
+    docsLinkCache.clear()
+  }
 }
