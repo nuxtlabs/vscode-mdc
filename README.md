@@ -193,11 +193,14 @@ A glob pattern to the local MDC component metadata file. Defaults to: `**/.nuxt/
 
 A glob pattern to exclude directories from the local MDC component metadata search. Defaults to: `{**/node_modules/**,**/dist/**,**/.output/**,**/.cache/**,**/.playground/**}`
 
-You may customize the local component metadata options per project by creating or editing `.vscode/settings.json` in your project's root directory with the desired setting:
+You may customize the local component metadata options per project by creating or editing `.vscode/settings.json` in your project's root directory with the desired setting. It utilize glob patterns to match the file or directories containing your component metadata from the root of the workspace:
 
 ```jsonc
 {
-  "mdc.componentMetadataLocalFilePattern": "**/path-to/your-static-file/component-metadata.json"
+  // Use a custom path to your component metadata file
+  "mdc.componentMetadataLocalFilePattern": "path-to/your-static-file/component-metadata.json",
+  // Or match a custom pattern
+  "mdc.componentMetadataLocalFilePattern": "**/custom-component-metadata.json"
 }
 ```
 
