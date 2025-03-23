@@ -414,7 +414,7 @@ function getCurrentYAMLPath (document: vscode.TextDocument, lineNumber: number):
   // Handle case where we're at line start
   if (lineNumber <= 0 || lineNumber > lines.length) { return path }
 
-  // VS Code lines are **not** zero-based, do **not** need to subtract 1
+  // Get current line, do **not** need to subtract 1
   const currentLine = lines[lineNumber]
   const currentIndentation = currentLine.length - currentLine.trimStart().length
 
