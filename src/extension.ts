@@ -143,7 +143,6 @@ export function activate (context: vscode.ExtensionContext) {
               const mdcComponents = await getComponentMetadata()
               // If no components, exit early
               if (!mdcComponents || !mdcComponents?.length) {
-                logger('No MDC components found for completion.')
                 return
               }
               return getMdcComponentCompletionItemProvider(mdcComponents, { document, position })
@@ -158,7 +157,6 @@ export function activate (context: vscode.ExtensionContext) {
               const mdcComponents = await getComponentMetadata()
               // If no components, exit early
               if (!mdcComponents || !mdcComponents?.length) {
-                logger('No MDC components found for props completion.')
                 return
               }
               return getMdcComponentPropCompletionItemProvider(mdcComponents, { document, position })

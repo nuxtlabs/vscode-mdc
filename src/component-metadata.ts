@@ -251,8 +251,6 @@ export async function getComponentMetadata (force = false): Promise<MDCComponent
     if (metadataCache) {
       return metadataCache
     }
-    // If we're within TTL but have no cache, previous attempt failed
-    logger('Skipping metadata fetch (within TTL period).')
     return null
   }
 
