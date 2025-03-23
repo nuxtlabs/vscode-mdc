@@ -20,6 +20,14 @@ Or with Nuxt modules:
 
 ## Features
 
+- [Block Components](#block-components)
+- [Inline Components](#inline-components)
+- [Span Text](#span-text)
+- [Attributes](#attributes)
+- [Document folding](#document-folding)
+- [Formatting](#formatting)
+- [Component name and prop suggestions](#component-name-and-prop-suggestions)
+
 ### Block Components
 
 ```md
@@ -177,13 +185,21 @@ To enable automatic discovery via `nuxt-component-meta`, follow these steps:
 
 ##### Local component metadata options
 
-###### `mdc.componentMetadataLocalFilePattern`
+`mdc.componentMetadataLocalFilePattern`
 
 A glob pattern to the local MDC component metadata file. Defaults to: `**/.nuxt/component-meta.mjs`
 
-###### `mdc.componentMetadataLocalExcludePattern`
+`mdc.componentMetadataLocalExcludePattern`
 
 A glob pattern to exclude directories from the local MDC component metadata search. Defaults to: `{**/node_modules/**,**/dist/**,**/.output/**,**/.cache/**,**/.playground/**}`
+
+You may customize the local component metadata options per project by creating or editing `.vscode/settings.json` in your project's root directory with the desired setting:
+
+```jsonc
+{
+  "mdc.componentMetadataLocalFilePattern": "**/path-to/your-static-file/component-metadata.json"
+}
+```
 
 #### Remote component metadata
 
@@ -197,9 +213,12 @@ The endpoint provided to `mdc.componentMetadataURL` should return JSON data in o
 - To globally configure the metadata URL for your project, search for `mdc.componentMetadataURL` in VS Code Settings.
 - To configure the metadata URL just for the scope of your active project, create or edit `.vscode/settings.json` in your project's root directory with the full URL to your API endpoint:
 
-```json
+```jsonc
 {
-  "mdc.componentMetadataURL": "https://example.com/api/my-components/mdc/metadata"
+  // Use your remote API endpoint to fetch component metadata
+  "mdc.componentMetadataURL": "https://example.com/api/my-components/mdc/metadata",
+  // Or even utilize a locally running server
+  "mdc.componentMetadataURL": "http://localhost:3000/api/component-meta"
 }
 ```
 
