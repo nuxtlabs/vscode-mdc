@@ -47,7 +47,7 @@ async function fetchRemoteComponentMetadata (url: string, force = false): Promis
 
     return metadata
   } catch (error: any) {
-    const errorMessage = `MDC: Error fetching component metadata: ${error.message}`
+    const errorMessage = `MDC: ${error.message}`
     logger(errorMessage, 'error')
     vscode.window.showErrorMessage(errorMessage)
     return null
