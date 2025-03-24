@@ -225,7 +225,7 @@ The endpoint provided to `mdc.componentMetadataURL` should return JSON data in o
 }
 ```
 
-The extension caches component metadata based on the the configurable TTL and provides a command `MDC: Refresh component metadata` to manually update the cache. To customize the cache TTL you may customize the value for `mdc.componentMetadataCacheTTL` in settings. Defaults to `60` minutes (1 hour).
+The extension caches component metadata based on the the configurable TTL and provides a command `MDC: Refresh component metadata` to manually update the cache. To customize the cache TTL you may customize the value for `mdc.componentMetadataCacheTTL` in settings. Defaults to `30` minutes.
 
 ### For more information
 

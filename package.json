@@ -155,12 +155,12 @@
         "mdc.enableComponentMetadataCompletions": {
           "type": "boolean",
           "default": false,
-          "description": "Enable MDC name and component prop auto-completions."
+          "description": "Enable MDC component name and prop auto-completions."
         },
         "mdc.componentMetadataLocalFilePattern": {
           "type": "string",
           "default": "**/.nuxt/component-meta.mjs",
-          "description": "A glob pattern to a local MDC component metadata file. Defaults to: `**/.nuxt/component-meta.mjs`"
+          "description": "A glob pattern to the local MDC component metadata. Defaults to: `**/.nuxt/component-meta.mjs`"
         },
         "mdc.componentMetadataLocalExcludePattern": {
           "type": "string",
@@ -170,12 +170,12 @@
         "mdc.componentMetadataURL": {
           "type": "string",
           "default": "",
-          "description": "A remote or localhost URL from which to fetch the MDC completion metadata. When not set, the extension will fallback to attempting to discover component metadata from the `mdc.componentMetadataLocalFilePattern` setting. This can be a remote URL or localhost URL that must return one of the documented response formats."
+          "description": "A remote or localhost URL from which to fetch the MDC completion metadata. The endpoint must return valid JSON that matches one of the documented response interfaces. When set, will take precedence over the `mdc.componentMetadataLocalFilePattern` configuration."
         },
         "mdc.componentMetadataCacheTTL": {
           "type": "number",
           "default": 30,
-          "description": "The number of minutes to cache the MDC metadata. Defaults to 30 minutes (1 hour)."
+          "description": "The number of minutes to cache the MDC metadata. Defaults to 30 minutes."
         },
         "mdc.debug": {
           "type": "boolean",

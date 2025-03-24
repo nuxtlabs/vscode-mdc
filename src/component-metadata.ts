@@ -6,7 +6,7 @@ import { logger } from './logger'
 let metadataCache: MDCComponentData[] | null = null
 let lastSuccessfulFile: string | null = null
 let lastFetch = 0
-const DEFAULT_CACHE_TTL_MINUTES = 60 // 1 hours
+const DEFAULT_CACHE_TTL_MINUTES = 30 // 30 minutes
 
 /**
  * Fetches metadata from a specified URL with optional force parameter.
