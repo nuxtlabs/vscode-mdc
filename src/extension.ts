@@ -183,7 +183,7 @@ export function activate (context: vscode.ExtensionContext) {
           // Register refresh metadata command
           context.subscriptions.push(refreshMetadata)
         }).catch((error) => {
-          const errorMessage = `Error fetching MDC component metadata: ${error.message}`
+          const errorMessage = `MDC: Error fetching component metadata: ${error.message}`
           if (outputChannel) {
             logger(errorMessage, 'error')
           }
@@ -211,7 +211,7 @@ export function activate (context: vscode.ExtensionContext) {
     // Initial setup
     updateConfiguration()
   } catch (error: any) {
-    const errorMessage = `Error activating MDC extension: ${error.message}`
+    const errorMessage = `MDC: Error activating extension: ${error.message}`
     if (outputChannel) {
       logger(errorMessage, 'error')
     }

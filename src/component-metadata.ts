@@ -19,7 +19,7 @@ const DEFAULT_CACHE_TTL_MINUTES = 60 // 1 hours
 async function fetchRemoteComponentMetadata (url: string, force = false): Promise<MDCComponentData[] | null> {
   try {
     logger(`Fetching MDC component metadata from: ${url}`)
-    vscode.window.showInformationMessage(`Fetching MDC component metadata from: ${url}`)
+    vscode.window.showInformationMessage(`MDC: Fetching component metadata from: ${url}`)
 
     const response = await fetch(url)
 
@@ -37,7 +37,7 @@ async function fetchRemoteComponentMetadata (url: string, force = false): Promis
     })
 
     if (metadata) {
-      const message = `MDC component metadata fetched successfully (${metadata.length} components found).`
+      const message = `MDC: Component metadata fetched successfully (${metadata.length} components found).`
       vscode.window.showInformationMessage(message)
       const config = vscode.workspace.getConfiguration('mdc')
       if (config.get('debug')) {
@@ -47,7 +47,7 @@ async function fetchRemoteComponentMetadata (url: string, force = false): Promis
 
     return metadata
   } catch (error: any) {
-    const errorMessage = `Error fetching metadata: ${error.message}`
+    const errorMessage = `MDC: Error fetching component metadata: ${error.message}`
     logger(errorMessage, 'error')
     vscode.window.showErrorMessage(errorMessage)
     return null
@@ -256,7 +256,7 @@ export async function getComponentMetadata (force = false): Promise<MDCComponent
 
   // If completions are disabled, update lastFetch and return
   if (!componentCompletionsEnabled) {
-    const message = 'MDC component metadata suggestions are not enabled.'
+    const message = 'MDC: Component metadata suggestions are not enabled.'
     logger(message)
     vscode.window.showInformationMessage(message)
     lastFetch = now // Remember this check even if disabled
