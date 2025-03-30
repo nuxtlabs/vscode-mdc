@@ -296,7 +296,7 @@ function isInsideYAMLMultilineString (document: vscode.TextDocument, lineNumber:
 function getSlotContent (cursorIndex?: number): string {
   const placeholderText = '<!-- Slot content -->'
   // Two spaces before the content to auto-indent
-  return typeof cursorIndex === 'number' ? '\n${2:' + placeholderText + '}' : `\n${placeholderText}`
+  return typeof cursorIndex === 'number' ? '\n${' + cursorIndex + ':' + placeholderText + '}' : `\n${placeholderText}`
 }
 
 /**
