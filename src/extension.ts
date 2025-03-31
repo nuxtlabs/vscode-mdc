@@ -1,5 +1,15 @@
 import * as vscode from 'vscode'
 import { formatter, getDocumentFoldingRanges } from '@nuxtlabs/monarch-mdc'
+import { getMdcComponentCompletionItemProvider, getMdcComponentPropCompletionItemProvider, createCacheCleanupListeners } from './completion-providers'
+import { getComponentMetadata } from './component-metadata'
+import { ensureOutputChannel, logger } from './logger'
+
+let outputChannel: vscode.OutputChannel | null = null
+let showOutputCommand: vscode.Disposable | null = null
+let refreshMetadata: vscode.Disposable | null = null
+let formatters: vscode.Disposable[] = []
+let mdcComponentCompletionProvider: vscode.Disposable | null = null
+let mdcComponentPropsCompletionProvider: vscode.Disposable | null = null
 
 /**
  * Formats the entire document using the specified formatter and returns the text edits.
@@ -65,48 +75,165 @@ const mdcDocumentSelector: vscode.DocumentSelector = [
 ]
 
 export function activate (context: vscode.ExtensionContext) {
-  let formatters: vscode.Disposable[] = []
+  try {
+    // Initialize output channel
+    outputChannel = ensureOutputChannel(outputChannel)
+    context.subscriptions.push(outputChannel)
 
-  // Update any dynamic configuration settings
-  function updateConfiguration () {
-    // Dispose existing formatters
-    formatters.forEach(f => f.dispose())
-    formatters = []
+    logger('Activating MDC extension...')
 
-    // Retrieve the `mdc` configuration settings
-    const config = vscode.workspace.getConfiguration('mdc')
-    const formattingEnabled = config.get<boolean>('enableFormatting', false)
+    // Update any dynamic configuration settings
+    function updateConfiguration () {
+      // If already registered, dispose of existing command
+      if (showOutputCommand) {
+        showOutputCommand.dispose()
+      }
+      showOutputCommand = vscode.commands.registerCommand('mdc.showOutput', () => {
+        ensureOutputChannel(outputChannel).show(true)
+      })
+      // Register show output command
+      context.subscriptions.push(showOutputCommand)
 
-    if (formattingEnabled) {
-      formatters = [
-        // Register the document formatting provider
-        vscode.languages.registerDocumentFormattingEditProvider(mdcDocumentSelector, {
-          provideDocumentFormattingEdits: (document: vscode.TextDocument) => getDocumentFormatter(document, false)
-        }),
-        // Register the format on type provider
-        vscode.languages.registerOnTypeFormattingEditProvider(
-          mdcDocumentSelector,
-          { provideOnTypeFormattingEdits: (document: vscode.TextDocument) => getDocumentFormatter(document, true) },
-          '\n'
-        )
-      ]
-      // Add formatters to subscriptions
-      context.subscriptions.push(...formatters)
+      // Dispose component completion providers
+      if (mdcComponentCompletionProvider) {
+        mdcComponentCompletionProvider.dispose()
+      }
+      if (mdcComponentPropsCompletionProvider) {
+        mdcComponentPropsCompletionProvider.dispose()
+      }
+
+      // Dispose existing formatters
+      formatters.forEach(f => f.dispose())
+      formatters = []
+
+      // Retrieve the `mdc` configuration settings
+      const config = vscode.workspace.getConfiguration('mdc')
+      const formattingEnabled = config.get<boolean>('enableFormatting', false)
+      const componentCompletionsEnabled = config.get<boolean>('enableComponentMetadataCompletions', false)
+
+      if (formattingEnabled) {
+        logger('Registering MDC formatters...')
+        formatters = [
+          // Register the document formatting provider
+          vscode.languages.registerDocumentFormattingEditProvider(mdcDocumentSelector, {
+            provideDocumentFormattingEdits: (document: vscode.TextDocument) => getDocumentFormatter(document, false)
+          }),
+          // Register the format on type provider
+          vscode.languages.registerOnTypeFormattingEditProvider(
+            mdcDocumentSelector,
+            { provideOnTypeFormattingEdits: (document: vscode.TextDocument) => getDocumentFormatter(document, true) },
+            '\n'
+          )
+        ]
+        // Add formatters to subscriptions
+        context.subscriptions.push(...formatters)
+        logger('MDC formatters registered.')
+      }
+
+      if (componentCompletionsEnabled) {
+        // Add cache cleanup listeners
+        context.subscriptions.push(createCacheCleanupListeners())
+
+        // Initialize component name and prop completion providers
+        getComponentMetadata(true).then(() => {
+          logger('Initial MDC component metadata fetch completed.')
+
+          mdcComponentCompletionProvider = vscode.languages.registerCompletionItemProvider(mdcDocumentSelector, {
+            provideCompletionItems: async (document, position) => {
+              const mdcComponents = await getComponentMetadata()
+              // If no components, exit early
+              if (!mdcComponents || !mdcComponents?.length) {
+                return
+              }
+              return getMdcComponentCompletionItemProvider(mdcComponents, { document, position })
+            }
+          },
+          ':' // Trigger on colon
+          )
+
+          // Register MDC block component completion provider
+          mdcComponentPropsCompletionProvider = vscode.languages.registerCompletionItemProvider(mdcDocumentSelector, {
+            provideCompletionItems: async (document, position) => {
+              const mdcComponents = await getComponentMetadata()
+              // If no components, exit early
+              if (!mdcComponents || !mdcComponents?.length) {
+                return
+              }
+              return getMdcComponentPropCompletionItemProvider(mdcComponents, { document, position })
+            }
+          },
+          '\n', // Trigger newline
+          ' ' // Trigger on space character
+          )
+
+          // Add to subscriptions for cleanup on deactivate
+          context.subscriptions.push(
+            mdcComponentCompletionProvider,
+            mdcComponentPropsCompletionProvider
+          )
+
+          // Dispose component metadata refresh command
+          if (refreshMetadata) {
+            refreshMetadata.dispose()
+          }
+
+          refreshMetadata = vscode.commands.registerCommand('mdc.refreshMetadata', async () => {
+            await getComponentMetadata(true)
+          })
+          // Register refresh metadata command
+          context.subscriptions.push(refreshMetadata)
+        }).catch((error) => {
+          const errorMessage = `MDC: Error fetching component metadata: ${error.message}`
+          if (outputChannel) {
+            logger(errorMessage, 'error')
+          }
+          vscode.window.showErrorMessage(errorMessage)
+          throw error // Re-throw to ensure VS Code knows the action failed
+        })
+      }
     }
-  }
 
-  // Add static and config change subscriptions
-  context.subscriptions.push(
-    // Register folding range provider
-    vscode.languages.registerFoldingRangeProvider(mdcDocumentSelector, { provideFoldingRanges }),
+    logger('Registering MDC folding provider...')
+    // Add static and config change subscriptions
+    context.subscriptions.push(
+      // Register folding range provider
+      vscode.languages.registerFoldingRangeProvider(mdcDocumentSelector, { provideFoldingRanges })
+    )
+    logger('MDC folding provider registered.')
+
     // Register configuration change listener
-    vscode.workspace.onDidChangeConfiguration((e) => {
+    context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e) => {
       if (e.affectsConfiguration('mdc')) {
         updateConfiguration()
       }
-    })
-  )
+    }))
 
-  // Initial setup
-  updateConfiguration()
+    // Initial setup
+    updateConfiguration()
+  } catch (error: any) {
+    const errorMessage = `MDC: Error activating extension: ${error.message}`
+    if (outputChannel) {
+      logger(errorMessage, 'error')
+    }
+    vscode.window.showErrorMessage(errorMessage)
+    throw error // Re-throw to ensure VS Code knows activation failed
+  }
+}
+
+function disposeProviders () {
+  if (mdcComponentCompletionProvider) {
+    mdcComponentCompletionProvider.dispose()
+    mdcComponentCompletionProvider = null
+  }
+  if (mdcComponentPropsCompletionProvider) {
+    mdcComponentPropsCompletionProvider.dispose()
+    mdcComponentPropsCompletionProvider = null
+  }
+}
+
+export function deactivate (): void {
+  disposeProviders()
+  if (outputChannel) {
+    outputChannel.dispose()
+  }
 }

@@ -151,9 +151,51 @@
           "type": "boolean",
           "default": false,
           "description": "Enable MDC document formatting."
+        },
+        "mdc.enableComponentMetadataCompletions": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable MDC component name and prop auto-completions."
+        },
+        "mdc.componentMetadataLocalFilePattern": {
+          "type": "string",
+          "default": "**/.nuxt/component-meta.mjs",
+          "description": "A glob pattern to the local MDC component metadata. Defaults to: `**/.nuxt/component-meta.mjs`"
+        },
+        "mdc.componentMetadataLocalExcludePattern": {
+          "type": "string",
+          "default": "{**/node_modules/**,**/dist/**,**/.output/**,**/.cache/**,**/.playground/**}",
+          "description": "A glob pattern to exclude directories from the local MDC component metadata search. Defaults to: `{**/node_modules/**,**/dist/**,**/.output/**,**/.cache/**,**/.playground/**}`"
+        },
+        "mdc.componentMetadataURL": {
+          "type": "string",
+          "default": "",
+          "description": "A remote or localhost URL from which to fetch the MDC completion metadata. The endpoint must return valid JSON that matches one of the documented response interfaces. When set, will take precedence over the `mdc.componentMetadataLocalFilePattern` configuration."
+        },
+        "mdc.componentMetadataCacheTTL": {
+          "type": "number",
+          "default": 30,
+          "description": "The number of minutes to cache the MDC metadata. Defaults to 30 minutes."
+        },
+        "mdc.debug": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable extension debug logging."
         }
       }
     },
+    "commands": [
+      {
+        "command": "mdc.showOutput",
+        "title": "Show extension output",
+        "category": "MDC"
+      },
+      {
+        "command": "mdc.refreshMetadata",
+        "title": "Refresh component metadata",
+        "category": "MDC"
+      }
+    ],
     "configurationDefaults": {
       "[mdc]": {
         "editor.folding": true
@@ -171,6 +213,7 @@
     "publish": "vsce publish"
   },
   "devDependencies": {
+    "@nuxt/schema": "^3.15.4",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@types/node": "^18.19.70",
     "@types/vscode": "1.42.0",
@@ -180,10 +223,13 @@
     "release-it": "^18.1.2",
     "typescript": "5.2.2",
     "vscode": "^1.1.37",
-    "vscode-textmate": "^9.2.0"
+    "vscode-textmate": "^9.2.0",
+    "vue-component-meta": "^2.2.4"
   },
   "dependencies": {
-    "@nuxtlabs/monarch-mdc": "^0.5.0"
+    "@nuxtlabs/monarch-mdc": "^0.5.0",
+    "scule": "^1.3.0",
+    "vscode-textmate": "^9.2.0"
   },
   "release-it": {
     "git": {
