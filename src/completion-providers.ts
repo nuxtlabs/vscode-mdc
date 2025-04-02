@@ -651,8 +651,10 @@ export function getMdcComponentPropCompletionItemProvider (componentData: MDCCom
       if (prop.name === 'styles') {
         // Special handling for the `styles` prop since it's always a multiline string
         return `${name}: |\n` + '  ${0:/** Add CSS */}'
-      } else if (type === 'boolean' || type === 'number') {
+      } else if (type === 'boolean') {
         return `${name}: ` + '${0:true}'
+      } else if (type === 'number') {
+        return `${name}: ` + '${0:}'
       } else if (type === 'string') {
         return `${name}: ` + '"${0:}"'
       } else {
