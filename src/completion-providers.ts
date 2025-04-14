@@ -150,6 +150,8 @@ function getPropValueType (component: MDCComponentData, prop: any): 'string' | '
       propType = 'boolean'
     } else if (prop.type?.includes('number')) {
       propType = 'number'
+    } else if (prop.type?.includes('Record<')) {
+      return 'object'
     } else if (prop.type?.includes('string')) {
       propType = 'string'
     } else if ((prop.schema as Record<string, any> | undefined)?.schema && Object.values((prop.schema as Record<string, any> | undefined)?.schema).some((s: any) => typeof s === 'object' && s?.kind === 'object')) {
