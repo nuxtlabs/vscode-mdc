@@ -4,6 +4,7 @@ node_modules
 .vscode-test/
 *.vsix
 .vscode-test-web
+.env
 
 # OSX files
 .DS_Store
