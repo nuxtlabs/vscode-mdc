@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v0.3.0
+
+[compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.2.4...v0.3.0)
+
+### 🚀 Enhancements
+
+- Component and prop suggestions ([#43](https://github.com/nuxtlabs/vscode-mdc/pull/43))
+
+### 🩹 Fixes
+
+- **completions:** Prop type value ([#50](https://github.com/nuxtlabs/vscode-mdc/pull/50))
+- **completions:** Detect object prop type ([#51](https://github.com/nuxtlabs/vscode-mdc/pull/51))
+
+### 🤖 CI
+
+- Deploy to open vsx ([95a5f06](https://github.com/nuxtlabs/vscode-mdc/commit/95a5f06))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+- Adam DeHaven ([@adamdehaven](https://github.com/adamdehaven))
+
 ## v0.2.4
 
 [compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.2.3...v0.2.4)
