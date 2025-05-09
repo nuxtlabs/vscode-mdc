@@ -229,7 +229,7 @@ The extension caches component metadata based on the the configurable TTL and pr
 
 ### For more information
 
-* [MDC Syntax Reference](https://content.nuxt.com/usage/markdown#introduction)
+* [MDC Syntax Reference](https://content.nuxt.com/docs/files/markdown)
 
 <!-- Badges -->
 [extension-href]: https://marketplace.visualstudio.com/items?itemName=Nuxt.mdc
