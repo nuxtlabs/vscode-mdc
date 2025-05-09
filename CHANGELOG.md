@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v0.3.2
+
+[compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.3.1...v0.3.2)
+
+### 🩹 Fixes
+
+- **deps:** Update monarch-mdc for formatter fixes ([#55](https://github.com/nuxtlabs/vscode-mdc/pull/55))
+
+### 📖 Documentation
+
+- Fix syntax reference link ([#54](https://github.com/nuxtlabs/vscode-mdc/pull/54))
+
+### ❤️ Contributors
+
+- Adam DeHaven ([@adamdehaven](https://github.com/adamdehaven))
+- Yue JIN ([@kingyue737](https://github.com/kingyue737))
+
 ## v0.3.1
 
 [compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.3.0...v0.3.1)
