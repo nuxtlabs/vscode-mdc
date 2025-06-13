@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@nuxtlabs/monarch-mdc':
-        specifier: ^0.6.1
-        version: 0.6.1
+        specifier: ^0.7.0
+        version: 0.7.0
       scule:
         specifier: ^1.3.0
         version: 1.3.0
@@ -436,8 +436,8 @@ packages:
     peerDependencies:
       eslint: ^8.23.0
 
-  '@nuxtlabs/monarch-mdc@0.6.1':
-    resolution: {integrity: sha512-8SAB6pn4B1HYBJhtU1QSEo+WFPVs694yyuXNym3lwpAMLBbNr8cx7rI+dy6Bkn1/9bA+mj6PKWgXer6+fnNDJQ==}
+  '@nuxtlabs/monarch-mdc@0.7.0':
+    resolution: {integrity: sha512-uwjvu7whsNFLZqOWDlHz7bpfmYAnjmZCuIkT0aVd8iJvUnSlaMI+uw9KruPC9ITtXdcAI/UW99HEo/plwoJkMw==}
 
   '@octokit/auth-token@5.1.2':
     resolution: {integrity: sha512-JcQDsBdg49Yky2w2ld20IHAlwr8d/d8N6NiOXbtuoPCqzbsiJgF633mVUw3x4mo0H5ypataQIX7SFu3yy44Mpw==}
@@ -3377,7 +3377,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  '@nuxtlabs/monarch-mdc@0.6.1': {}
+  '@nuxtlabs/monarch-mdc@0.7.0': {}
 
   '@octokit/auth-token@5.1.2': {}
 
