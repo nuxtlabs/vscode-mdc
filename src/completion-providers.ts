@@ -17,6 +17,8 @@ type MDCComponentMeta = Omit<Component, 'filePath' | 'shortPath'> & {
   shortPath?: string
 }
 
+type MdcPropType = 'string' | 'number' | 'boolean' | 'array' | 'array-numbers' | 'object'
+
 export interface MDCComponentData {
   /** The kebab-case name of the component to be utilized in MDC. */
   mdc_name: string
@@ -45,7 +47,7 @@ const propNameCache = new Map<string, { kebab: string, camel: string }>()
 /** Cache for storing nested props by component name */
 const nestedPropsCache = new Map<string, Map<string, Record<string, any> | null>>()
 /** Cache for storing prop value types by component name */
-const propTypeCache = new Map<string, Map<string, 'string' | 'number' | 'boolean' | 'object'>>()
+const propTypeCache = new Map<string, Map<string, MdcPropType>>()
 /** Cache for storing documentation links by component name */
 const docsLinkCache = new Map<string, string>()
 /** Cache for storing YAML block boundaries by model and line number */
@@ -132,9 +134,9 @@ function getNestedProps (component: MDCComponentData, prop: any): Record<string,
  *
  * @param {MDCComponentData} component - The MDC component
  * @param {any} prop - The prop to determine the type for
- * @returns {'string' | 'number' | 'boolean' | 'object'} - The determined prop value type
+ * @returns {MdcPropType} - The determined prop value type
  */
-function getPropValueType (component: MDCComponentData, prop: any): 'string' | 'number' | 'boolean' | 'object' {
+function getPropValueType (component: MDCComponentData, prop: any): MdcPropType {
   if (!component.mdc_name) { return 'string' }
 
   let componentCache = propTypeCache.get(component.mdc_name)
@@ -146,12 +148,16 @@ function getPropValueType (component: MDCComponentData, prop: any): 'string' | '
   const cacheKey = prop.name
   let propType = componentCache.get(cacheKey)
   if (!propType) {
-    if (prop.type?.startsWith('boolean')) {
+    if (prop.type?.includes('Record<')) {
+      return 'object'
+    } else if (prop.type?.includes('string[]')) {
+      propType = 'array'
+    } else if (prop.type?.includes('number[]')) {
+      propType = 'array-numbers'
+    } else if (prop.type?.startsWith('boolean')) {
       propType = 'boolean'
     } else if (prop.type?.includes('number')) {
       propType = 'number'
-    } else if (prop.type?.includes('Record<')) {
-      return 'object'
     } else if (prop.type?.includes('string')) {
       propType = 'string'
     } else if ((prop.schema as Record<string, any> | undefined)?.schema && Object.values((prop.schema as Record<string, any> | undefined)?.schema).some((s: any) => typeof s === 'object' && s?.kind === 'object')) {
@@ -657,6 +663,10 @@ export function getMdcComponentPropCompletionItemProvider (componentData: MDCCom
         return `${name}: ` + '${0:true}'
       } else if (type === 'number') {
         return `${name}: ` + '${0:}'
+      } else if (type === 'array') {
+        return `${name}: ` + '["${0:}"]'
+      } else if (type === 'array-numbers') {
+        return `${name}: ` + '[${0:}]'
       } else if (type === 'string') {
         return `${name}: ` + '"${0:}"'
       } else {
