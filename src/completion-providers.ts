@@ -17,7 +17,7 @@ type MDCComponentMeta = Omit<Component, 'filePath' | 'shortPath'> & {
   shortPath?: string
 }
 
-type MdcPropType = 'string' | 'number' | 'boolean' | 'array' | 'array-numbers' | 'object'
+type MdcPropType = 'string' | 'number' | 'boolean' | 'array' | 'array-unquoted' | 'object'
 
 export interface MDCComponentData {
   /** The kebab-case name of the component to be utilized in MDC. */
@@ -148,17 +148,17 @@ function getPropValueType (component: MDCComponentData, prop: any): MdcPropType 
   const cacheKey = prop.name
   let propType = componentCache.get(cacheKey)
   if (!propType) {
-    if (prop.type?.includes('Record<')) {
+    if (prop.type?.startsWith('Record<') || prop.type?.toLowerCase()?.startsWith('object') || prop.type?.startsWith('Array<string,')) {
       return 'object'
-    } else if (prop.type?.includes('string[]')) {
+    } else if (prop.type?.startsWith('string[]') || prop.type?.startsWith('Array<string')) {
       propType = 'array'
-    } else if (prop.type?.includes('number[]')) {
-      propType = 'array-numbers'
+    } else if (prop.type?.startsWith('number[]') || prop.type?.startsWith('Array<number') || prop.type?.startsWith('Array<boolean')) {
+      propType = 'array-unquoted'
     } else if (prop.type?.startsWith('boolean')) {
       propType = 'boolean'
-    } else if (prop.type?.includes('number')) {
+    } else if (prop.type?.startsWith('number')) {
       propType = 'number'
-    } else if (prop.type?.includes('string')) {
+    } else if (prop.type?.startsWith('string')) {
       propType = 'string'
     } else if ((prop.schema as Record<string, any> | undefined)?.schema && Object.values((prop.schema as Record<string, any> | undefined)?.schema).some((s: any) => typeof s === 'object' && s?.kind === 'object')) {
       propType = 'object'
@@ -665,7 +665,7 @@ export function getMdcComponentPropCompletionItemProvider (componentData: MDCCom
         return `${name}: ` + '${0:}'
       } else if (type === 'array') {
         return `${name}: ` + '["${0:}"]'
-      } else if (type === 'array-numbers') {
+      } else if (type === 'array-unquoted') {
         return `${name}: ` + '[${0:}]'
       } else if (type === 'string') {
         return `${name}: ` + '"${0:}"'
