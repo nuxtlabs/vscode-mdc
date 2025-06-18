@@ -148,17 +148,17 @@ function getPropValueType (component: MDCComponentData, prop: any): MdcPropType 
   const cacheKey = prop.name
   let propType = componentCache.get(cacheKey)
   if (!propType) {
-    if (prop.type?.startsWith('Record<') || prop.type?.toLowerCase()?.startsWith('object') || prop.type?.startsWith('Array<string,')) {
+    if (prop.type?.includes('Record<') || prop.type?.toLowerCase()?.includes('object') || prop.type?.includes('Array<string,')) {
       return 'object'
-    } else if (prop.type?.startsWith('string[]') || prop.type?.startsWith('Array<string')) {
+    } else if (prop.type?.includes('string[]') || prop.type?.includes('Array<string')) {
       propType = 'array'
-    } else if (prop.type?.startsWith('number[]') || prop.type?.startsWith('Array<number') || prop.type?.startsWith('Array<boolean')) {
+    } else if (prop.type?.includes('number[]') || prop.type?.includes('Array<number') || prop.type?.includes('Array<boolean')) {
       propType = 'array-unquoted'
-    } else if (prop.type?.startsWith('boolean')) {
+    } else if (prop.type?.includes('boolean')) {
       propType = 'boolean'
-    } else if (prop.type?.startsWith('number')) {
+    } else if (prop.type?.includes('number')) {
       propType = 'number'
-    } else if (prop.type?.startsWith('string')) {
+    } else if (prop.type?.includes('string')) {
       propType = 'string'
     } else if ((prop.schema as Record<string, any> | undefined)?.schema && Object.values((prop.schema as Record<string, any> | undefined)?.schema).some((s: any) => typeof s === 'object' && s?.kind === 'object')) {
       propType = 'object'
