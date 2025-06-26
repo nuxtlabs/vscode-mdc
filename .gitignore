@@ -8,3 +8,5 @@ node_modules
 
 # OSX files
 .DS_Store
+
+out-test/

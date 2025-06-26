@@ -203,11 +203,12 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run build",
+    "vscode:prepublish": "pnpm run build",
     "build": "tsc -p ./ && esno scripts/build.ts",
     "dev": "tsc -p ./ && esno watch scripts/build.ts",
     "lint": "eslint src --ext ts",
-    "test": "vitest",
+    "test:compile": "tsc -p tsconfig.test.json",
+    "test": "pnpm run test:compile && node ./out-test/test/runTest.js",
     "release": "release-it",
     "generate": "vsce package",
     "publish": "vsce publish"
@@ -215,11 +216,16 @@
   "devDependencies": {
     "@nuxt/schema": "^3.15.4",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.10",
     "@types/node": "^18.19.70",
     "@types/vscode": "1.42.0",
+    "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^2.32.0",
     "eslint": "^8.57.1",
     "esno": "^0.17.0",
+    "glob": "^11.0.3",
+    "mocha": "^11.7.1",
     "release-it": "^18.1.2",
     "typescript": "5.2.2",
     "vscode": "^1.1.37",

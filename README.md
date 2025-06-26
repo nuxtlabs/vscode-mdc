@@ -231,6 +231,21 @@ The extension caches component metadata based on the the configurable TTL and pr
 
 * [MDC Syntax Reference](https://content.nuxt.com/docs/files/markdown)
 
+## Running Extension Tests
+
+To run the integration tests for this extension:
+
+1. Install dependencies:
+   ```sh
+   pnpm install
+   ```
+2. Build the extension and run tests:
+   ```sh
+   pnpm test
+   ```
+
+This will compile the source and test files, then run the integration tests using VS Code's test runner.
+
 <!-- Badges -->
 [extension-href]: https://marketplace.visualstudio.com/items?itemName=Nuxt.mdc
 [extension-version-src]: https://img.shields.io/visual-studio-marketplace/v/Nuxt.mdc?label=Visual%20Studio%20Code&style=flat&colorA=020420&colorB=28CF8D
