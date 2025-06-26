@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v0.4.0
+
+[compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.3.3...v0.4.0)
+
+### 🚀 Enhancements
+
+- **completions:** Array prop completion formats ([#57](https://github.com/nuxtlabs/vscode-mdc/pull/57))
+
+### 🩹 Fixes
+
+- **deps:** Update monarch-mdc ([#58](https://github.com/nuxtlabs/vscode-mdc/pull/58))
+
+### ✅ Tests
+
+- Init extension test ([b9f9e54](https://github.com/nuxtlabs/vscode-mdc/commit/b9f9e54))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+- Adam DeHaven ([@adamdehaven](https://github.com/adamdehaven))
+
 ## v0.3.3
 
 [compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.3.2...v0.3.3)
