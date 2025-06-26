@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v0.4.1
+
+[compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.4.0...v0.4.1)
+
+### 🏡 Chore
+
+- Exclude types from build ([c580313](https://github.com/nuxtlabs/vscode-mdc/commit/c580313))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+
 ## v0.4.0
 
 [compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.3.3...v0.4.0)
