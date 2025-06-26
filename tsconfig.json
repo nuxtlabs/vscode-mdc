@@ -15,6 +15,7 @@
     "node_modules",
     ".vscode-test",
     "scripts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "test/**/*"
   ]
 }
