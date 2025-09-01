@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v0.4.2
+
+[compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.4.1...v0.4.2)
+
+### 🩹 Fixes
+
+- **deps:** Update mdc formatter for dynamic props ([#60](https://github.com/nuxtlabs/vscode-mdc/pull/60))
+
+### ❤️ Contributors
+
+- Adam DeHaven ([@adamdehaven](https://github.com/adamdehaven))
+
 ## v0.4.1
 
 [compare changes](https://github.com/nuxtlabs/vscode-mdc/compare/v0.4.0...v0.4.1)
